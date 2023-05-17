@@ -27,8 +27,8 @@
             </div>
 
             <div class="mt-4">
-              <x-label for="telephone" :value="__('Telephone')" />
-              <x-input id="telephone" class="block mt-1 w-full" type="tel" name="telephone" :value="old('telephone')" required />
+                <x-label for="telephone" :value="__('Telephone')" />
+                <x-input id="telephone" class="block mt-1 w-full" type="tel" name="telephone" :value="old('telephone')" required />
             </div>
 
             <!-- Password -->
