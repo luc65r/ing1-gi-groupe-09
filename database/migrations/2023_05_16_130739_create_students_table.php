@@ -15,8 +15,9 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
-            $table->text('school');
-            $table->text('education_level');
+            $table->string('school');
+            $table->string('education_level');
+            $table->string('city');
             $table->primary('user_id');
         });
     }
