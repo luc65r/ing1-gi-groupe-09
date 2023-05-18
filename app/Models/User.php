@@ -51,12 +51,18 @@ class User extends Authenticatable
         return $this->hasOne(Admin::class);
     }
 
+    public function manager() {
+        return $this->hasOne(Manager::class);
+    }
+
     public function hasRole($role) {
         switch ($role) {
             case 'admin':
                 return !!$this->admin;
             case 'student':
                 return !!$this->student;
+            case 'manager':
+                return !!$this->manager;
             default:
                 return false;
         }
