@@ -21,4 +21,8 @@ class Project extends Model
     public function resources() {
         return $this->hasMany(Resource::class);
     }
+
+    public function teams() {
+        return $this->hasMany(Team::class);
+    }
 }
