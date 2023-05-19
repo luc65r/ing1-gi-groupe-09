@@ -14,8 +14,8 @@ class CreateManagerProjectTable extends Migration
     public function up()
     {
         Schema::create('manager_project', function (Blueprint $table) {
-            $table->foreignIdFor(Manager::class)->constrained();
-            $table->foreignIdFor(Project::class)->constrained();
+            $table->foreignId('manager_id')->constrained();
+            $table->foreignId('project_id')->constrained();
             $table->primary(['manager_id', 'project_id']);
         });
     }

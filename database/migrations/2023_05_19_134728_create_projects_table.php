@@ -15,7 +15,7 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Contest::class)->constrained();
+            $table->foreignId('contest_id')->constrained();
             $table->string('name');
             $table->text('description');
             $table->timestamps();
