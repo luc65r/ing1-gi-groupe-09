@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentTeamTable extends Migration
+class CreateTeamsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateStudentTeamTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_team', function (Blueprint $table) {
-            $table->foreignIdFor(Student::class)->constrained();
-            $table->foreignIdFor(Team::class)->constrained();
-            $table->primary(['student_id', 'team_id']);
+        Schema::create('teams', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->foreignId('project_id')->constrained();
+            $table->foreignId('owner')->constrained('students');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +29,6 @@ class CreateStudentTeamTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_team');
+        Schema::dropIfExists('teams');
     }
 }
