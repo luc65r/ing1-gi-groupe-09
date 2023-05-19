@@ -17,7 +17,6 @@ class CreateStudentTeamTable extends Migration
             $table->foreignIdFor(Student::class)->constrained();
             $table->foreignIdFor(Team::class)->constrained();
             $table->primary(['student_id', 'team_id']);
-            $table->boolean('owner');
         });
     }
 
