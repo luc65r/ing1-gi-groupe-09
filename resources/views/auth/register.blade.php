@@ -31,6 +31,19 @@
                 <x-input id="telephone" class="block mt-1 w-full" type="tel" name="telephone" :value="old('telephone')" required />
             </div>
 
+            <x-form-input name="school" :label="__('School')" required />
+
+            <x-form-select name="educationLevel" :label="__('Education level')" required>
+                <option value="L1">{{ __('Licence 1') }}</option>
+                <option value="L2">{{ __('Licence 2') }}</option>
+                <option value="L3">{{ __('Licence 3') }}</option>
+                <option value="M1">{{ __('Master 1') }}</option>
+                <option value="M2">{{ __('Master 2') }}</option>
+                <option value="D">{{ __('Doctorate') }}</option>
+            </x-form-select>
+
+            <x-form-input name="city" :label="__('City')" required />
+
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />
