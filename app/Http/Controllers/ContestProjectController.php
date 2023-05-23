@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Contest;
 use App\Models\Project;
 
 class ContestProjectController extends Controller
@@ -19,9 +20,9 @@ class ContestProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Contest $contest)
     {
-        return view('contests.projects.index', ['projects' => Project::all()]);
+        return view('contests.projects.index', ['projects' => $contest->projects, 'contest' => $contest]);
     }
 
     /**
@@ -29,9 +30,9 @@ class ContestProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Contest $contest)
     {
-        return view('contests.projects.create');
+        return view('contests.projects.create', ['projects' => $contest->projects, 'contest' => $contest]);
     }
 
     /**
@@ -40,7 +41,7 @@ class ContestProjectController extends Controller
      * @param  \App\Http\Requests\StoreProjectRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProjectRequest $request)
+    public function store(StoreProjectRequest $request, Contest $contest)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -48,11 +49,12 @@ class ContestProjectController extends Controller
         ]);
 
         $projet = Project::create([
+            'contest_id' => $contest->id,
             'name' => $request->name,
             'description' => $request->description,
         ]);
 
-        return redirect()->route('contests.projects.show', $projet->id);
+        return redirect()->route('projects.show', $projet->id);
     }
 
     /**
@@ -61,10 +63,11 @@ class ContestProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Contest $contest, Project $project)
     {
         return view('contests.projects.show', [
             'project' => $project,
+            'contest' => $contest,
         ]);
     }
 
@@ -74,7 +77,7 @@ class ContestProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit(Contest $contest, Project $project)
     {
         //
     }
@@ -86,7 +89,7 @@ class ContestProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(UpdateProjectRequest $request, Contest $contest, Project $project)
     {
         //
     }
@@ -99,6 +102,7 @@ class ContestProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return back();
     }
 }
