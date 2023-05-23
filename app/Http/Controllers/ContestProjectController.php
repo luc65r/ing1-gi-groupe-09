@@ -77,9 +77,9 @@ class ContestProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contest $contest, Project $project)
+    public function edit(Project $project)
     {
-        //
+        return view('contests.projects.edit', compact('project'));
     }
 
     /**

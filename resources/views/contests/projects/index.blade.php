@@ -25,6 +25,7 @@
                                 <button type="submit" class="btn btn-danger"
                                     onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</button>
                             </form>
+                            <a href="{{ route('projects.edit', $project->id) }}">Modifier</a>
                         </div>
                     @endforeach
                 </div>
