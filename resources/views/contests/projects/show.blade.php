@@ -12,7 +12,7 @@
                     {!! \Illuminate\Support\Str::markdown($project->description) !!}
                 </div>
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <a href="{{ route('contests.projects.quizzes.index', ['project' => $project]) }}">Quizz</a>
+                    <a href="{{ route('projects.quizzes.index', ['project' => $project]) }}">Quizz</a>
                 </div>
             </div>
         </div>
