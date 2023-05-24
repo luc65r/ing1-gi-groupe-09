@@ -34,4 +34,8 @@ class Project extends Model
     {
         return $this->belongsToMany(Manager::class);
     }
+
+    public function quizzes() {
+        return $this->hasMany(Quiz::class);
+    }
 }
