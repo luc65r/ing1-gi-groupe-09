@@ -12,7 +12,7 @@
                 @csrf
                 @method('PUT')
 
-                <x-form action="">
+                <x-form action="{{ route('projects.update', $project) }}">
                     <x-form-input name="name" label="Nom" value="{{ $project->name }}" required />
                     <x-form-textarea name="description" label="Description" required />
                     <x-form-submit />
