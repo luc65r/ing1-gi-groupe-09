@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="run" name="">
+	<target name="create_run_jar" depends="build">
+		<jar destfile="anal.jar" filesetmanifest="mergewithoutmain">
+			<manifest>
+				<attribute name="Main-Class" value="AnalServer" />
+				<attribute name="Class-Path" value="." />
+			</manifest>
+			<fileset dir="bin" />
+		</jar>
+	</target>
+	<target name="clean">
+		<delete dir="bin" />
+		<mkdir dir="bin" />
+	</target>
+	<target name="build" depends="clean">
+		<javac srcdir="src" destdir="bin" />
+		<echo message="Compilation en cours…" />
+	</target>
+	<target name="run" depends="create_run_jar">
+		<java jar="anal.jar" fork="true" />
+	</target>
+</project>
