@@ -27,6 +27,7 @@ Route::get('/dashboard', function () {
 
 Route::resource('contests', ContestController::class);
 Route::resource('contests.projects', ContestProjectController::class)->shallow();
+Route::resource('projects.quiz', ProjectQuizController::class)->shallow();
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
