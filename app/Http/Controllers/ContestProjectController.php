@@ -91,7 +91,12 @@ class ContestProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Contest $contest, Project $project)
     {
-        //
+        $project->update([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('projects.show', $project->id);
     }
 
     /**
