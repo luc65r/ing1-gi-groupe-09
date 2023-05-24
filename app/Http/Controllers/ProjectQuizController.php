@@ -27,7 +27,7 @@ class ProjectQuizController extends Controller
      */
     public function create(Project $project)
     {
-        //
+        return view('contests.projects.quizzes.create', ['quizzes' => $project->quizzes, 'project' => $project]);
     }
 
     /**
@@ -39,7 +39,16 @@ class ProjectQuizController extends Controller
      */
     public function store(Request $request, Project $project)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string'],
+        ]);
+
+        $quiz = Quiz::create([
+            'project_id' => $project->id,
+            'name' => $request->name
+        ]);
+
+        return redirect()->route('projects.show', $project->id);
     }
 
     /**
