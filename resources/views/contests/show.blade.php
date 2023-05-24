@@ -12,6 +12,7 @@
                     <a
                         href="{{ route('contests.projects.index', ['contest' => $contest->id]) }}">{!! \Illuminate\Support\Str::markdown($contest->description) !!}</a>
                 </div>
+
             </div>
         </div>
     </div>

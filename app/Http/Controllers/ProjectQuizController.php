@@ -16,7 +16,7 @@ class ProjectQuizController extends Controller
      */
     public function index(Project $project)
     {
-        return view('projects.quiz.index', ['quizzes' => $project->quizzes, 'project' => $project]);
+        return view('contests.projects.quizzes.index', ['quizzes' => $project->quizzes, 'project' => $project]);
     }
 
     /**
