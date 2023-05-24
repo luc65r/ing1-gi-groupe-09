@@ -29,4 +29,8 @@ class Project extends Model
     public function managers() {
         return $this->belongsToMany(Manager::class);
     }
+
+    public function quizzes() {
+        return $this->hasMany(Quiz::class);
+    }
 }
