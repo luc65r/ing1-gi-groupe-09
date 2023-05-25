@@ -17,9 +17,9 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     @foreach ($quizzes as $quiz)
                         <div>
-
-                            {{ $quiz->name }}
-
+                            <a href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
+                                {{ $quiz->name }}
+                            </a>
                         </div>
                     @endforeach
                 </div>

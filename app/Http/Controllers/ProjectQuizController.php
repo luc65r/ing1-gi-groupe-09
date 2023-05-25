@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Quiz;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class ProjectQuizController extends Controller
@@ -41,6 +42,11 @@ class ProjectQuizController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string'],
+            'question1' => ['required', 'string'],
+            'question2' => ['required', 'string'],
+            'question3' => ['required', 'string'],
+            'question4' => ['required', 'string'],
+            'question5' => ['required', 'string'],
         ]);
 
         $quiz = Quiz::create([
@@ -48,7 +54,28 @@ class ProjectQuizController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('projects.show', $project->id);
+        Question::create([
+            'question' => $request->question1,
+            'quiz_id' => $quiz->id,
+        ]);
+        Question::create([
+            'question' => $request->question2,
+            'quiz_id' => $quiz->id,
+        ]);
+        Question::create([
+            'question' => $request->question3,
+            'quiz_id' => $quiz->id,
+        ]);
+        Question::create([
+            'question' => $request->question4,
+            'quiz_id' => $quiz->id,
+        ]);
+        Question::create([
+            'question' => $request->question5,
+            'quiz_id' => $quiz->id,
+        ]);
+
+        return redirect()->route('quizzes.show', ['quiz' => $quiz]);
     }
 
     /**
@@ -60,7 +87,7 @@ class ProjectQuizController extends Controller
      */
     public function show(Project $project, Quiz $quiz)
     {
-        //
+        return view('contests.projects.quizzes.show', ['quiz' => $quiz, 'questions' => $quiz->questions]);
     }
 
     /**
