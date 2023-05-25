@@ -22,93 +22,47 @@ class UserController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
+    public function show(User $user)
+    {
+        return view('admin.users.show', compact('user'));
+    }
+
     public function create()
     {
         return view('admin.users.create');
     }
-    public function show($id)
-    {
-        $user = User::findOrFail($id);
-        return view('admin.users.show', compact('user'));
+
+    public function createStudent() {
+        return view('admin.users.createStudent');
     }
-    // public function store(Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'name' => 'required',
-    //         'firstName' => 'required',
-    //         'email' => 'required|email|unique:users,email',
-    //         'telephone' => 'required',
-    //         'address' => 'required',
-    //         'password' => 'required|min:6|confirmed',
-    //     ]);
 
-    //     $user = new User;
-    //     $user->name = $validatedData['name'];
-    //     $user->firstName = $validatedData['firstName'];
-    //     $user->email = $validatedData['email'];
-    //     $user->telephone = $validatedData['telephone'];
-    //     $user->address = $validatedData['address'];
-    //     $user->password = bcrypt($validatedData['password']);
-    //     $user->save();
-
-    //     return redirect()->route('admin.users.index')->with('success', 'Utilisateur créé avec succès !');
-    // }
-
-    public function store(Request $request)
+    public function storeStudent(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'firstname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'telephone' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'school' => ['required', 'string', 'max:255'],
+            'educationLevel' => ['required', 'string', Rule::in(['L1', 'L2', 'L3', 'M1', 'M2', 'D'])],
+            'city' => ['required', 'string', 'max:255'],
         ]);
 
-        // Créer l'utilisateur commun à tous les profils
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
+            'telephone' => $request->telephone,
             'password' => Hash::make($request->password),
         ]);
-
-        $userType = $request->type;
-
-        // Traiter les différents types d'utilisateurs
-        if ($userType === 'etudiant') {
-            // Valider et enregistrer les données spécifiques aux étudiants
-            $request->validate([
-                'studentNumber' => ['required', 'string', 'max:255'],
-                'studyCity' => ['required', 'string', 'max:255'],
-                'school' => ['required', 'string', 'max:255'],
-                'option' => ['required', 'string', Rule::in(['Mathématiques', 'Informatique', 'Design'])],
-                'niveauEtude' => ['required', 'string', Rule::in(['L1', 'L2', 'L3', 'M1', 'M2', 'Doctorat'])],
-            ]);
-
-            $user->student()->create([
-                'student_number' => $request->studentNumber,
-                'study_city' => $request->studyCity,
-                'school' => $request->school,
-                'option' => $request->option,
-                'education_level' => $request->niveauEtude,
-            ]);
-
-        } elseif ($userType === 'gestionnaire') {
-            // Valider et enregistrer les données spécifiques aux gestionnaires
-            $request->validate([
-                'company' => ['required', 'string', 'max:255'],
-            ]);
-
-            $user->manager()->create([
-                'company' => $request->company,
-            ]);
-        } else {
-            throw new \Exception("qqqqqqqq");
-        }
+        $user->student()->create([
+            'school' => $request->school,
+            'education_level' => $request->educationLevel,
+            'city' => $request->city,
+        ]);
 
         event(new Registered($user));
 
-        return redirect()->route('admin.users.store')->with('success', 'Admin créé avec succès !');
+        return redirect()->route('admin.users.index')->with('success', 'Admin créé avec succès !');
     }
     public function edit($id)
     {
