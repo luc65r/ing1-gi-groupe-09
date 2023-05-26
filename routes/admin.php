@@ -11,4 +11,6 @@ Route::group(['middleware' => 'is:admin', 'prefix' => 'admin', 'as' => 'admin.']
     Route::post('/users/student', [UserController::class, 'storeStudent'])->name('users.storeStudent');
     Route::post('/users/manager', [UserController::class, 'storeManager'])->name('users.storeManager');
     Route::post('/users/admin', [UserController::class, 'storeAdmin'])->name('users.storeAdmin');
+
+
 });
