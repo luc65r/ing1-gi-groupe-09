@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContestController;
 use App\Http\Controllers\ContestProjectController;
 use App\Http\Controllers\ProjectQuizController;
+use App\Http\Controllers\ProjectTeamController;
 use App\Http\Controllers\MessageController;
 
 /*
@@ -29,6 +30,7 @@ Route::get('/dashboard', function () {
 Route::resource('contests', ContestController::class);
 Route::resource('contests.projects', ContestProjectController::class)->shallow();
 Route::resource('projects.quizzes', ProjectQuizController::class)->shallow();
+Route::resource('projects.teams', ProjectTeamController::class)->shallow();
 
 Route::get('messages/sent', [MessageController::class, 'sent'])
      ->middleware(['auth'])->name('messages.sent');

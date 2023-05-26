@@ -11,21 +11,27 @@ class Team extends Model
 
     protected $fillable = [
         'name',
+        'owner',
+        'project_id',
     ];
 
-    public function students() {
+    public function students()
+    {
         return $this->belongsToMany(Student::class);
     }
 
-    public function owner() {
+    public function owner()
+    {
         return $this->belongsTo(Student::class, 'owner');
     }
 
-    public function project() {
+    public function project()
+    {
         return $this->belongsTo(Project::class);
     }
 
-    public function answers() {
+    public function answers()
+    {
         return $this->hasMany(Answer::class);
     }
 }
