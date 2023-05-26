@@ -19,13 +19,15 @@
                             <a href="{{ route('projects.show', $project->id) }}">
                                 {{ $project->name }}
                             </a>
-                            <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</button>
-                            </form>
-                            <a href="{{ route('projects.edit', $project->id) }}">Modifier</a>
+                            @is('admin')
+                                <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</button>
+                                </form>
+                                <a href="{{ route('projects.edit', $project->id) }}">Modifier</a>
+                            @endis
                         </div>
                     @endforeach
                 </div>

@@ -36,20 +36,24 @@ class ProjectTeamController extends Controller
      * @param  \App\Http\Requests\StoreTeamRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTeamRequest $request, Project $project, Student $student)
+    public function store(StoreTeamRequest $request, Project $project)
     {
         $request->validate([
             'name' => ['required', 'string'],
         ]);
 
-        if ($student) {
-            $team = Team::create([
-                'project_id' => $project->id,
-                'name' => $request->name,
-                'owner' => $student->id,
-            ]);
-        }
-        return redirect()->route('teams.show', ['teams' => $team]);
+        $student = auth()->user()->student;
+
+        //if ($student) {
+        $team = Team::create([
+            'project_id' => $project->id,
+            'name' => $request->name,
+            'owner' => $student->user_id,
+        ]);
+        $student->teams()->attach($team);
+
+        //}
+        return redirect()->route('teams.show', ['team' => $team]);
     }
 
     /**
@@ -60,7 +64,7 @@ class ProjectTeamController extends Controller
      */
     public function show(Team $team)
     {
-        //
+        return view('contests.projects.teams.show', ['team' => $team]);
     }
 
     /**

@@ -14,26 +14,29 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <a href="{{ route('projects.quizzes.index', ['project' => $project]) }}">Quizz</a>
                 </div>
-                @php
-                    $loggedInUser = Auth::user();
-                    $hasTeam = false;
-                    
-                    if ($loggedInUser->type === 'student') {
-                        $student = \App\Models\Student::where('user_id', $loggedInUser->id)->first();
-                        $hasTeam = $student && $student->teams->isNotEmpty();
-                    }
-                @endphp
 
-                @if ($hasTeam)
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <a href="">Voir mon équipe</a>
-                    </div>
-                @else
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <a href="{{ route('projects.teams.create', ['project' => $project]) }}">Créer mon
-                            équipe</a>
-                    </div>
-                @endif
+                @is('student')
+                    @php
+                        $user = Auth::user();
+                        $team = $user->student
+                            ->teams()
+                            ->whereBelongsTo($project)
+                            ->exists();
+                    @endphp
+
+                    @if ($team)
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <a href="{{ route('teams.show', ['team' => $team]) }}">Voir mon équipe</a>
+                        </div>
+                    @else
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <a href="{{ route('projects.teams.create', ['project' => $project]) }}">Créer mon équipe</a>
+                        </div>
+                    @endif
+                @endis
+
+
+
             </div>
         </div>
     </div>
