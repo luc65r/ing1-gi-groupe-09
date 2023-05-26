@@ -36,6 +36,14 @@ class UserController extends Controller
         return view('admin.users.createStudent');
     }
 
+    public function createManager() {
+        return view('admin.users.createManager');
+    }
+
+    public function createAdmin() {
+        return view('admin.users.createAdmin');
+    }
+
     public function storeStudent(Request $request)
     {
         $request->validate([
@@ -64,6 +72,56 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index')->with('success', 'Admin créé avec succès !');
     }
+
+    public function storeManager(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'company' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'telephone' => ['required', 'string', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'activation_start' => ['required', 'string', 'max:255'],
+
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'telephone' => $request->telephone,
+            'password' => Hash::make($request->password),
+        ]);
+        $user->manager()->create([
+            'company' => $request->company,
+            'activation_start' => $request->activation_start,
+            'activation_end' => $request->activation_end,
+        ]);
+
+        event(new Registered($user));
+
+        return redirect()->route('admin.users.index')->with('success', 'Gestionnaire créé avec succès !');
+    }
+
+    public function storeAdmin(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'telephone' => ['required', 'string', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'telephone' => $request->telephone,
+            'password' => Hash::make($request->password),
+        ]);
+
+        event(new Registered($user));
+        return redirect()->route('admin.users.index')->with('success', 'Admin créé avec succès !');
+    }
+
     public function edit($id)
     {
         $user = User::findOrFail($id);

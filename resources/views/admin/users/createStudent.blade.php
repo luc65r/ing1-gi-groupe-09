@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <a href="{{ route('admin.users.create') }}" id="changerType" style="text-decoration:underline" class="hidden">Changer de type d'utilisateur</a>
+    <a href="{{ route('admin.users.create') }}" id="changerType" style="text-decoration:underline">Changer de type d'utilisateur</a>
 
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <x-form action="{{ route('admin.users.storeStudent') }}">

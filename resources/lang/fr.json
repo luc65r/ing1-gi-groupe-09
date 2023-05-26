@@ -21,5 +21,8 @@
     "Register": "Inscription",
     "Log Out": "Déconnexion",
     "Dashboard": "Tableau de bord",
-    "Submit": "Valider"
+    "Submit": "Valider",
+    "Company's name": "Nom de l'entreprise",
+    "Start of activation": "Début de l'activation",
+    "End of activation": "Fin de l'activation"
 }
