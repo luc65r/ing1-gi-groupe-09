@@ -12,6 +12,7 @@ class Message extends Model
     protected $fillable = [
         'subject',
         'body',
+        'sender',
     ];
 
     public function sender() {
