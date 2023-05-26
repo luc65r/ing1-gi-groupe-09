@@ -1,13 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers\AdminController;
-/*
-Route::middleware('is:admin')->group(function () {
-    Route::get('/admin/users', function () {
-        return view('admin.users');
-    });
+use App\Http\Controllers\UserController;
+
+Route::group(['middleware' => 'is:admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    // ...
+    Route::resource('/users', UserController::class);
 });
-*/
-/*Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
-Route::post('/admin/store', 'AdminController@store')->name('admin.store');*/
+
+
+?>
