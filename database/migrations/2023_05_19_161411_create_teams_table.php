@@ -17,7 +17,7 @@ class CreateTeamsTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('project_id')->constrained();
-            $table->foreignId('owner')->constrained('students');
+            $table->foreignId('owner')->references('user_id')->on('students');
             $table->timestamps();
         });
     }
