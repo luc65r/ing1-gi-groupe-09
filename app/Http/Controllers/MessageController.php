@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMessageRequest;
+use App\Models\MessageUser; 
 use App\Http\Requests\UpdateMessageRequest;
 use App\Models\Message;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -25,11 +29,12 @@ class MessageController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     
      */
     public function create()
     {
-        return view('messages.create');
+        $users = User::all();
+        return view('messages.create', compact('users'));
     }
 
     /**
@@ -39,24 +44,23 @@ class MessageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreMessageRequest $request)
-    {
-        $request->validate([
-            'subject' => ['required', 'string', 'max:255'],
-            'body' => ['required', 'string'],
-            'recievers' => ['required', 'array', 'min:1'],
-            'recievers.*' => ['required', 'integer', 'exists:App\Models\User,id'],
-        ]);
+{
+    $request->validate([
+        'subject' => ['required', 'string', 'max:255'],
+        'body' => ['required', 'string'],
+        'recievers' => ['required', 'array', 'min:1'],
+        'recievers.*' => ['required', 'string', 'exists:App\Models\User,email'],
+    ]);
 
-        $msg = Message::create([
-            'subject' => $request->subject,
-            'body' => $request->body,
-            'sender' => auth()->user()->id,
-        ]);
+    $msg = auth()->user()->messages()->create([
+        'subject' => $request->subject,
+        'body' => $request->body,
+    ]);
 
-        $msg->recievers()->syncWithoutDetaching($request->recievers);
+    $msg->recievers()->attach($request->recievers);
 
-        return redirect()->route('messages.index');
-    }
+    return redirect()->route('messages.index');
+}
 
     /**
      * Display the specified resource.
@@ -80,7 +84,18 @@ class MessageController extends Controller
         //
     }
 
-    public function sent() {
+    public function sent()
+    {
         return view('messages.sent', ['messages' => auth()->user()->messagesSent]);
     }
+    public function searchUsers(Request $request)
+{
+    
+    $users = User::all();
+
+    dd($users);
+    return response()->json($users);
+}
+
+    
 }
