@@ -17,7 +17,7 @@ class Team extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class);
+        return $this->belongsToMany(Student::class, 'student_team', 'team_id', 'student_id');
     }
 
     public function owner()

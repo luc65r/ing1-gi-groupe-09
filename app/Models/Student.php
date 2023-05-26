@@ -19,15 +19,18 @@ class Student extends Model
         'city',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function teams() {
-        return $this->belongsToMany(Team::class);
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class, 'student_team', 'student_id', 'team_id');
     }
 
-    public function teamsOwned() {
+    public function teamsOwned()
+    {
         return $this->hasMany(Team::class, 'owner');
     }
 }
