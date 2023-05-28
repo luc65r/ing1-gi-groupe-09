@@ -9,6 +9,7 @@
             {{ __('QCM') }}
         </h2>
     </x-slot>
+    <a href="javascript:history.back()">Revenir en arrière</a>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

@@ -4,6 +4,6 @@
             {{ $team->name }}
         </h2>
     </x-slot>
-
+    <a href="javascript:history.back()">Revenir en arrière</a>
 
 </x-app-layout>

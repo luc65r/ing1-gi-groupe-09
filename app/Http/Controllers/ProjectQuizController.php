@@ -41,12 +41,12 @@ class ProjectQuizController extends Controller
     public function store(Request $request, Project $project)
     {
         $request->validate([
-            'name' => ['required', 'string'],
-            'question1' => ['required', 'string'],
-            'question2' => ['required', 'string'],
-            'question3' => ['required', 'string'],
-            'question4' => ['required', 'string'],
-            'question5' => ['required', 'string'],
+            'name' => $request->question,
+            'question1' => $request->question,
+            'question2' => $request->question,
+            'question3' => $request->question,
+            'question4' => $request->question,
+            'question5' => $request->question,
         ]);
 
         $quiz = Quiz::create([
@@ -75,7 +75,7 @@ class ProjectQuizController extends Controller
             'quiz_id' => $quiz->id,
         ]);
 
-        return redirect()->route('quizzes.show', ['quiz' => $quiz]);
+        return redirect()->route('projects.quizzes.index', ['quizzes' => $project->quizzes, 'project' => $project]);
     }
 
     /**
@@ -99,8 +99,9 @@ class ProjectQuizController extends Controller
      */
     public function edit(Project $project, Quiz $quiz)
     {
-        //
+        return view('contests.projects.quizzes.edit', compact('project', 'quiz'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -112,8 +113,45 @@ class ProjectQuizController extends Controller
      */
     public function update(Request $request, Project $project, Quiz $quiz)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'question1' => 'required',
+            'question2' => 'required',
+            'question3' => 'required',
+            'question4' => 'required',
+            'question5' => 'required',
+        ]);
+
+        $quiz->update([
+            'name' => $request->name
+        ]);
+
+        $quiz->questions()->delete();
+
+        Question::create([
+            'question' => $request->question1,
+            'quiz_id' => $quiz->id,
+        ]);
+        Question::create([
+            'question' => $request->question2,
+            'quiz_id' => $quiz->id,
+        ]);
+        Question::create([
+            'question' => $request->question3,
+            'quiz_id' => $quiz->id,
+        ]);
+        Question::create([
+            'question' => $request->question4,
+            'quiz_id' => $quiz->id,
+        ]);
+        Question::create([
+            'question' => $request->question5,
+            'quiz_id' => $quiz->id,
+        ]);
+
+        return redirect()->route('projects.quizzes.index', ['quizzes' => $project->quizzes, 'project' => $project]);
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -124,6 +162,8 @@ class ProjectQuizController extends Controller
      */
     public function destroy(Project $project, Quiz $quiz)
     {
-        //
+        $quiz->questions()->delete();
+        $quiz->delete();
+        return back();
     }
 }

@@ -5,6 +5,7 @@
             {{ __('QCM') }}
         </h2>
     </x-slot>
+    <a href="javascript:history.back()">Revenir en arrière</a>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -20,6 +21,16 @@
                             <a href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
                                 {{ $quiz->name }}
                             </a>
+                            @is('manager')
+                                <form action="{{ route('quizzes.destroy', $quiz->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce QCM ?')">Supprimer</button>
+                                </form>
+                                <a
+                                    href="{{ route('quizzes.edit', ['project' => $project, 'quiz' => $quiz->id]) }}">Modifier</a>
+                            @endis
                         </div>
                     @endforeach
                 </div>
