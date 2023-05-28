@@ -21,7 +21,7 @@
                         $team = $user->student
                             ->teams()
                             ->whereBelongsTo($project)
-                            ->exists();
+                            ->first();
                     @endphp
 
                     @if ($team)

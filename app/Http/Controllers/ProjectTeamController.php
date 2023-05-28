@@ -44,7 +44,6 @@ class ProjectTeamController extends Controller
 
         $student = auth()->user()->student;
 
-        //if ($student) {
         $team = Team::create([
             'project_id' => $project->id,
             'name' => $request->name,
@@ -52,8 +51,7 @@ class ProjectTeamController extends Controller
         ]);
         $student->teams()->attach($team);
 
-        //}
-        return redirect()->route('teams.show', ['team' => $team]);
+        return redirect()->route('teams.show', ['team' => $team->id]);
     }
 
     /**
