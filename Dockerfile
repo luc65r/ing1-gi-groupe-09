@@ -19,8 +19,9 @@ ENV APP_ENV production
 WORKDIR /app
 COPY . .
 
+RUN mv .env.prod .env
+
 RUN composer install --no-interaction --optimize-autoloader --no-dev
-RUN rm -f database/database.sqlite
 RUN touch database/database.sqlite
 RUN php artisan migrate -n --force
 RUN php artisan db:seed -n --force
