@@ -12,7 +12,13 @@ bootstrap/cache/*
 !database
 database/database.sqlite
 
+!docker
+
 !.env.prod
+
+!java
+java/*
+!java/anal.jar
 
 !public
 !resources
