@@ -28,8 +28,9 @@
                                     <button type="submit" class="btn btn-danger"
                                         onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce QCM ?')">Supprimer</button>
                                 </form>
-                                <a
-                                    href="{{ route('quizzes.edit', ['project' => $project, 'quiz' => $quiz->id]) }}">Modifier</a>
+                                <a href="{{ route('quizzes.edit', ['project' => $project, 'quiz' => $quiz->id]) }}">Modifier
+                                </a>
+                                <a href="{{ route('quizzes.responses', ['quiz' => $quiz]) }}">Voir les réponses</a>
                             @endis
                         </div>
                     @endforeach

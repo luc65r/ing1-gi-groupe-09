@@ -166,4 +166,16 @@ class ProjectQuizController extends Controller
         $quiz->delete();
         return back();
     }
+
+    public function responses(Project $project, Quiz $quiz)
+    {
+        $questions = $quiz->questions()->get();
+        $answers = [];
+
+        foreach ($questions as $question) {
+            $answers[$question->id] = $question->answers()->where('project_id', $project->id)->get();
+        }
+
+        return view('contests.projects.quizzes.responses', compact('project', 'quiz', 'answers'));
+    }
 }

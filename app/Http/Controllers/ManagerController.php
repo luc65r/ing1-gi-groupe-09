@@ -16,4 +16,13 @@ class ManagerController extends Controller
 
         return view('manager.projects.search_results', ['projects' => $projects]);
     }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->query('search');
+
+        $managers = Manager::where('email', 'LIKE', '%' . $searchTerm . '%')->get();
+
+        return response()->json($managers);
+    }
 }

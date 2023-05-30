@@ -43,6 +43,10 @@ Route::resource('projects.teams', ProjectTeamController::class)->shallow();
 
 Route::post('/teams/{team}/join', [ProjectTeamController::class, 'join'])->name('teams.join');
 
+Route::get('/quizzes/{quiz}/responses', [ProjectQuizController::class, 'responses'])->name('quizzes.responses');
+
+
+
 Route::get('messages/sent', [MessageController::class, 'sent'])
     ->middleware(['auth'])->name('messages.sent');
 Route::resource('messages', MessageController::class)
