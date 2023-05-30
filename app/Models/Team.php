@@ -34,4 +34,9 @@ class Team extends Model
     {
         return $this->hasMany(Answer::class);
     }
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
 }
