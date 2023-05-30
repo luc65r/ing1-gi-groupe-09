@@ -27,6 +27,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/dataMoment', function () {
+    return view('dataMoment');
+})->name('dataMoment');
+
+Route::get('/dataAncien', function () {
+    return view('dataAncien');
+})->name('dataAncien');
+
+
 Route::resource('contests', ContestController::class);
 Route::resource('contests.projects', ContestProjectController::class)->shallow();
 Route::resource('projects.quizzes', ProjectQuizController::class)->shallow();

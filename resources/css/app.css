@@ -1,3 +1,197 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*Boutons voir plus*/
+.voirP{
+  background-color: #0e8769;
+  padding: 0.6rem;
+  color: white;
+}
+
+.voirP:hover{
+  background-color: #27babc;
+  cursor: pointer;
+}
+
+.avanc:hover{
+  transform: scale(1.02);
+}
+  
+img.logo{
+  width: 5%;
+}
+
+.mt-12 {
+  margin-top: 5rem;
+}
+
+.mt-16 {
+  margin-top: 10rem;
+}
+.block {
+  display: block;
+}
+.h-20 {
+  height: 5rem;
+}
+
+.h-50 {
+  height: 5rem;
+  
+}
+
+.h-70 {
+  height: 10rem;
+  
+}
+
+.h-100 {
+  height: 20rem;
+}
+
+.h-150 {
+  height: 25rem;
+}
+  
+.h-200 {
+  height: 37rem;
+}
+
+.h-300 {
+  height: 44rem;
+}
+
+.text-align{
+  text-align: justify;
+
+}
+
+.h-4 {
+  height: 1rem;
+}
+.w-full {
+  width: 100%;
+}
+
+.w-30P {
+  width: 30%;
+}
+
+.w-45P {
+  width: 45%;
+}
+
+.w-demi {
+  width: 50%;
+}
+
+.w-70P {
+  width: 70%;
+}
+
+.w-80P {
+  width: 80%;
+}
+
+.w-95P {
+  width: 95%;
+}
+
+.w-main {
+  width: 2rem;
+}
+  
+.max-w-6xl {
+  max-width: 72rem;
+}
+
+
+.bg-bleu-logo {
+  --tw-bg-opacity: 1;
+  background-color: #27babc;
+}
+
+.bg-data {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.bg-vertPau{
+  background-color: #0e8769;
+
+}
+  
+.bg-supp {
+  --tw-bg-opacity: 1;
+  background-color: #f5f4f8;
+}
+
+
+.bg-accueil{
+  background: linear-gradient(70deg, #0e8769, #27babc,#2ea3f2);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+  
+.text-left {
+  float: left;
+}
+
+
+.w-95P {
+  width: 95%;
+}
+
+.w-main {
+  width: 2rem;
+}
+
+.max-w-6xl {
+  max-width: 72rem;
+}
+
+
+.bg-bleu-logo {
+  --tw-bg-opacity: 1;
+  background-color: #27babc;
+}
+
+.bg-supp {
+  --tw-bg-opacity: 1;
+  background-color: #f5f4f8;
+}
+  
+.bg-supp2 {
+  --tw-bg-opacity: 1;
+  background-color: #694cc2;
+}
+
+.bg-supp3 {
+  --tw-bg-opacity: 1;
+  background-color: #4b4d0e;
+}
+
+
+
+.fl{
+  float: left;
+}
+
+.fr{
+  float: right;
+}
+
+.shadow-lg2 {
+  --tw-shadow: 0 10px 15px -3px rgba(116, 104, 104, 0.932), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.mr-7 {
+  margin-right: 5rem;
+}
+
+.full-height {
+  height: 100%;
+}
