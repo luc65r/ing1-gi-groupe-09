@@ -94,5 +94,13 @@ public class AnalServer {
         }
     }
 
-    private static record IndentCount(int indent, int count) {}
+    private static class IndentCount {
+        public int indent;
+        public int count;
+
+        public IndentCount(int indent, int count) {
+            this.indent = indent;
+            this.count = count;
+        }
+    }
 }

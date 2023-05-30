@@ -18,8 +18,8 @@ if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
     return false;
 }
 
-if (str_starts_with($uri, '/stats/')) {
-    $session = curl_init("http://localhost:8001$uri");
+if (strncmp($uri, '/stats/', 7) === 0) {
+    $session = curl_init('http://localhost:8001/' . substr($uri, 7));
     $request_method = $_SERVER['REQUEST_METHOD'];
     if ($request_method === 'POST') {
         curl_setopt($session, CURLOPT_POST, true);
