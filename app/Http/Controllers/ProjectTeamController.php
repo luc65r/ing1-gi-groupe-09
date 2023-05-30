@@ -64,7 +64,7 @@ class ProjectTeamController extends Controller
      */
     public function show(Team $team)
     {
-        return view('contests.projects.teams.show', ['team' => $team]);
+        return view('contests.projects.teams.show', ['team' => $team->id]);
     }
 
     /**
