@@ -41,12 +41,12 @@ class ProjectQuizController extends Controller
     public function store(Request $request, Project $project)
     {
         $request->validate([
-            'name' => $request->question,
-            'question1' => $request->question,
-            'question2' => $request->question,
-            'question3' => $request->question,
-            'question4' => $request->question,
-            'question5' => $request->question,
+            'name' => ['required', 'string'],
+            'question1' => ['required', 'string'],
+            'question2' => ['required', 'string'],
+            'question3' => ['required', 'string'],
+            'question4' => ['required', 'string'],
+            'question5' => ['required', 'string'],
         ]);
 
         $quiz = Quiz::create([

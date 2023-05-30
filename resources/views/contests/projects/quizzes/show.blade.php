@@ -15,35 +15,39 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
+                    @php
+                        $loggedInUser = Auth::user();
+                        $team = null;
+                        
+                        if ($loggedInUser->hasRole('student')) {
+                            $team = $loggedInUser->student->teams()->first();
+                        }
+                    @endphp
+
                     <x-form action="" method="POST">
                         @foreach ($questions as $question)
                             <div class="p-6 bg-white border-b border-gray-200 block">
                                 {{ $question->question }}
-                                @is('manager')
+                                @if ($team && $team->students->first()->user->id === $loggedInUser->student->user->id)
                                     <x-form-textarea name="reponse" label="Réponse" required />
-                                @endis
+                                @endif
+
                             </div>
                         @endforeach
-                        @php
-                            $loggedInUser = Auth::user();
-                            $team = null;
-                            
-                            if ($loggedInUser->type === 'student') {
-                                $team = $loggedInUser->student->teams()->first();
-                            }
-                        @endphp
 
-                        @if ($team)
+
+                        @if ($team && $team->students->first()->user->id === $loggedInUser->student->user->id)
                             <div>
                                 <x-form-submit></x-form-submit>
                             </div>
-                        @else
+                        @elseif ($loggedInUser->hasRole('student'))
                             <div>
                                 <div class="p-6 bg-white border-b border-gray-200 block">
                                     Vous n'êtes pas autorisé à répondre
                                 </div>
                             </div>
                         @endif
+
                     </x-form>
                 </div>
             </div>
