@@ -13,6 +13,7 @@ class Team extends Model
         'name',
         'owner',
         'project_id',
+        'code',
     ];
 
     public function students()
@@ -33,5 +34,10 @@ class Team extends Model
     public function answers()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
     }
 }

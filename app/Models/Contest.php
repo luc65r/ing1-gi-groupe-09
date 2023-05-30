@@ -12,6 +12,7 @@ class Contest extends Model
     protected $fillable = [
         'name',
         'description',
+        'type',
         'start',
         'end',
     ];
