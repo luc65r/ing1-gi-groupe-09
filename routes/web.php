@@ -41,10 +41,12 @@ Route::resource('contests.projects', ContestProjectController::class)->shallow()
 Route::resource('projects.quizzes', ProjectQuizController::class)->shallow();
 Route::resource('projects.teams', ProjectTeamController::class)->shallow();
 
+Route::post('/teams/{team}/join', [ProjectTeamController::class, 'join'])->name('teams.join');
+
 Route::get('messages/sent', [MessageController::class, 'sent'])
-     ->middleware(['auth'])->name('messages.sent');
+    ->middleware(['auth'])->name('messages.sent');
 Route::resource('messages', MessageController::class)
-     ->except(['edit', 'update']);
+    ->except(['edit', 'update']);
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';

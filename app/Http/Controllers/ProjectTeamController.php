@@ -6,7 +6,7 @@ use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
 use App\Models\Team;
 use App\Models\Project;
-use App\Models\Student;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectTeamController extends Controller
 {
@@ -64,8 +64,19 @@ class ProjectTeamController extends Controller
      */
     public function show(Team $team)
     {
-        return view('contests.projects.teams.show', ['team' => $team->id]);
+        return view('contests.projects.teams.show', ['team' => $team]);
     }
+
+    public function join(Team $team)
+    {
+        $user = Auth::user();
+
+        $user->student->teams()->attach($team->id);
+
+        return redirect()->route('teams.show', ['team' => $team]);
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.
