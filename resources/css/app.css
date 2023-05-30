@@ -127,9 +127,23 @@ img.logo{
   background-color: #f5f4f8;
 }
 
+tbody tr:nth-child(even) {
+  background-color: #0e876949; /* Couleur des lignes paires */
+}
+
+tbody tr:nth-child(odd) {
+  background-color:  #27b9bc4b; /* Couleur des lignes impaires */
+}
+
 
 .bg-accueil{
   background: linear-gradient(70deg, #0e8769, #27babc,#2ea3f2);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.bg-accueil_pale{
+  background: linear-gradient(70deg, #0e8769b2, #27b9bcb4,#2ea4f28c);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -195,3 +209,4 @@ img.logo{
 .full-height {
   height: 100%;
 }
+
