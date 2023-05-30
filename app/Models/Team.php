@@ -13,6 +13,7 @@ class Team extends Model
         'name',
         'owner',
         'project_id',
+        'code',
     ];
 
     public function students()
