@@ -56,7 +56,8 @@ public class AnalServer {
 
                 i++;
             }
-            functionsLineCount.add(i - functions.pop().count);
+            while (!functions.empty())
+                functionsLineCount.add(i - functions.pop().count);
 
             return "{\"functionCount\":" + functionsLineCount.size()
                 + ",\"functionMin\":" + Collections.min(functionsLineCount)
