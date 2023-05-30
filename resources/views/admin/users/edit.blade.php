@@ -1,11 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
+        @if (auth()->user()->id !== $user->id)
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Modifier un utilisateur
         </h2>
+        @else
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Modifier profil
+        </h2>
+
+        @endif
     </x-slot>
 
     <div class="py-6">
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
                 <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
