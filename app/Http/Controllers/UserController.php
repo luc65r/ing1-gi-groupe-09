@@ -165,8 +165,11 @@ class UserController extends Controller
         }
 
         $user->save();
-
-        return redirect()->route('admin.users.index')->with('success', 'Utilisateur mis à jour avec succès !');
+        if (auth()->user()->hasRole('admin')) {
+            return redirect()->route('admin.users.index')->with('success', 'Utilisateur mis à jour avec succès !');
+        } else{
+            return redirect()->route('dashboard')->with('success', 'Utilisateur mis à jour avec succès !');
+        }
     }
 
     public function destroy($id)
