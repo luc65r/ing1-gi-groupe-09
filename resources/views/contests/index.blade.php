@@ -13,6 +13,7 @@
                     Créer un nouvel évènement
                 </a>
             @endis
+
             <div class="overflow-hidden shadow-lg  sm:rounded-lg mt-8">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="min-w-full divide-y divide-gray-200">
@@ -29,6 +30,7 @@
                         </thead>
                         <tbody>
                             @foreach ($contests->sortBy('start') as $contest)
+                                
                                 <tr>
 
                                     @if (auth()->user()->student || auth()->user()->admin)
@@ -69,6 +71,8 @@
                         </tbody>
                     </table>
                 </div>
+
+                
             </div>
         </div>
     </div>
