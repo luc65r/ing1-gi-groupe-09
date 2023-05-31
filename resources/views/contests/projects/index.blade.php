@@ -34,46 +34,73 @@
                                         @endis
 
                                         <div class="p-6 bg-white border-b border-gray-200">
-                                            @foreach ($projects as $project)
-                                                <div>
-                                                    <a href="{{ route('projects.show', $project->id) }}">
-                                                        {{ $project->name }}
-                                                    </a>
-                                                    @is('admin')
-                                                        <form action="{{ route('projects.destroy', $project->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger"
-                                                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</button>
-                                                        </form>
-                                                        <div>
-                                                            <a
-                                                                href="{{ route('projects.edit', $project->id) }}">Modifier</a>
-                                                        </div>
-                                                        <div>
-                                                            <form
-                                                                action="{{ route('projects.assign', ['project' => $project->id]) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                <div>
-                                                                    <label for="manager-choice">Sélectionner un manager
-                                                                        :</label>
-                                                                    <input list="list-manager" id="manager-choice"
-                                                                        name="manager-choice" autocomplete="off">
+                                            @foreach ($projects->sortBy('start') as $project)
+                                                <tr>
 
-                                                                    <datalist id="list-manager">
-                                                                        @foreach ($managers as $manager)
-                                                                            <option value="{{ $manager->user->name }}">
-                                                                        @endforeach
-                                                                    </datalist>
+                                                    @if (auth()->user()->student || auth()->user()->admin)
+                                                        <td class="px-6 py-4 text-center">{{ $project->name }}</td>
+                                                        <td class="px-6 py-4 text-center">
+                                                            <a class="voirP rounded-lg"
+                                                                href="{{ route('projects.show', $project->id) }}">
+                                                                {{ 'Voir détails' }}
+                                                            </a>
+                                                            @is('admin')
+                                                                <form action="{{ route('projects.destroy', $project->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-danger"
+                                                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</button>
+                                                                </form>
+                                                                <div>
+                                                                    <a
+                                                                        href="{{ route('projects.edit', $project->id) }}">Modifier</a>
                                                                 </div>
-                                                                <button type="submit">Assigner</button>
-                                                            </form>
-                                                        </div>
-                                                    @endis
+                                                                <div>
+                                                                    <form
+                                                                        action="{{ route('projects.assign', ['project' => $project->id]) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        <div>
+                                                                            <label for="manager-choice">Sélectionner un
+                                                                                manager :</label>
+                                                                            <input list="list-manager" id="manager-choice"
+                                                                                name="manager-choice" autocomplete="off">
+                                                                            <datalist id="list-manager">
+                                                                                @foreach ($managers as $manager)
+                                                                                    <option
+                                                                                        value="{{ $manager->user->name }}">
+                                                                                @endforeach
+                                                                            </datalist>
+                                                                        </div>
+                                                                        <button type="submit">Assigner</button>
+                                                                    </form>
+                                                                </div>
+                                                            @endis
+                                                        @elseif (auth()->user()->manager)
+                                                            @if ($project->managers->contains(auth()->user()->manager))
+                                                        <td class="px-6 py-4 text-center">{{ $project->name }}</td>
+                                                        <td class="px-6 py-4 text-center">
+                                                            <a class="voirP rounded-lg"
+                                                                href="{{ route('projects.show', $project->id) }}">
+                                                                {{ 'Voir détails' }}
+                                                            </a>
+                                                        </td>
+                                                    @endif
+                                            @endif
+
+                                            @is('admin')
+                                                <div>
+                                                    <a class="voirP rounded-lg"
+                                                        href="{{ route('contests.edit', $contest->id) }}">Modifier</a>
                                                 </div>
+                                            @endis
+
+                                            </tr>
                                             @endforeach
+
+
+
 
 
                                         </div>

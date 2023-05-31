@@ -19,11 +19,13 @@ class Manager extends Model
         'activation_end',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function projects() {
-        return $this->belongsToMany(Project::class);
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'manager_project', 'manager_id', 'project_id');
     }
 }

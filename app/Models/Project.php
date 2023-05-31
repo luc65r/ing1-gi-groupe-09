@@ -32,7 +32,7 @@ class Project extends Model
 
     public function managers()
     {
-        return $this->belongsToMany(Manager::class); //, 'manager_project', 'project_id', 'manager_id');
+        return $this->belongsToMany(Manager::class, 'manager_project', 'project_id', 'manager_id');
     }
 
     public function quizzes()

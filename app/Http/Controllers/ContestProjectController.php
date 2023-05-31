@@ -127,7 +127,7 @@ class ContestProjectController extends Controller
         $manager = Manager::whereHas('user', function ($query) use ($selectedManager) {
             $query->where('name', $selectedManager);
         })->first();
-        if ($manager) {
+        if ($manager && !$project->managers->contains($manager)) {
             $project->managers()->attach($manager->user->id);
         }
 
