@@ -17,6 +17,7 @@ class CreateResourcesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('url');
+            $table->foreignId('project_id')->constrained();
             $table->timestamps();
         });
     }
