@@ -5,9 +5,12 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <a class="voirP rounded-lg" href="javascript:history.back()">
+                Retour à la liste des évènements
+            </a>
+            <div class="overflow-hidden shadow-xl sm:rounded-lg p-6 bg-accueil_pale mt-6">
                 <x-form action="{{ route('contests.store') }}">
                     <x-form-input name="name" label="Nom" required />
                     <x-form-textarea name="description" label="Description" required />

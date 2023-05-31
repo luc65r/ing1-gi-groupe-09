@@ -4,38 +4,36 @@
             {{ $project->name }}
         </h2>
     </x-slot>
-    <a href="javascript:history.back()">Revenir en arrière</a>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    {!! \Illuminate\Support\Str::markdown($project->description) !!}
-                </div>
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <a href="{{ route('projects.quizzes.index', ['project' => $project]) }}">Quizz</a>
-                </div>
+        <a class="voirP rounded-lg" href="javascript:history.back()">Revenir en arrière</a>
 
-                @is('student')
-                    @php
-                        $user = Auth::user();
-                        $team = $user->student
-                            ->teams()
-                            ->whereBelongsTo($project)
-                            ->first();
-                    @endphp
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6">
+                <div class="p-6 bg-white border-b border-gray-200 shadow-lg bg-accueil_pale">                
+                    <h1 class="text-lg">Description:</h1> 
+                        {!! \Illuminate\Support\Str::markdown($project->description) !!}
+                    
+                        <div class="mt-6 flex">
+                            <a class="voirP rounded-lg" href="{{ route('projects.quizzes.index', ['project' => $project]) }}">Répondre au quizz</a>
 
-                    @if ($team)
-                        <div class="p-6 bg-white border-b border-gray-200">
-                            <a href="{{ route('teams.show', ['team' => $team]) }}">Voir mon équipe</a>
+                            @is('student')
+                                @php
+                                    $user = Auth::user();
+                                    $team = $user->student
+                                        ->teams()
+                                        ->whereBelongsTo($project)
+                                        ->first();
+                                @endphp
+
+                                @if ($team)
+                                        <a href="{{ route('teams.show', ['team' => $team]) }}" class="voirP rounded-lg">Voir mon équipe</a>
+                                @else
+                                        <a href="{{ route('projects.teams.create', ['project' => $project]) }}" class="voirP rounded-lg">Créer mon équipe</a>
+                                @endif
+                            @endis
+
                         </div>
-                    @else
-                        <div class="p-6 bg-white border-b border-gray-200">
-                            <a href="{{ route('projects.teams.create', ['project' => $project]) }}">Créer mon équipe</a>
-                        </div>
-                    @endif
-                @endis
-
-
 
             </div>
         </div>

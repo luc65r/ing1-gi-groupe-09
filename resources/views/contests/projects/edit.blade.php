@@ -5,20 +5,21 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="overflow-hidden shadow-xl sm:rounded-lg p-6 bg-accueil_pale">
 
-            <form action="{{ route('projects.update', $project) }}" method="POST">
-                @csrf
-                @method('PUT')
+                <form action="{{ route('projects.update', $project) }}" method="POST">
+                    @csrf
+                    @method('PUT')
 
-                <x-form action="{{ route('projects.update', $project) }}">
-                    <x-form-input name="name" label="Nom" value="{{ $project->name }}" required />
-                    <x-form-textarea name="description" label="Description" required />
-                    <x-form-submit />
-                </x-form>
-            </form>
-
+                    <x-form action="{{ route('projects.update', $project) }}">
+                        <x-form-input name="name" label="Nom" value="{{ $project->name }}" required />
+                        <x-form-textarea name="description" label="Description" required />
+                        <x-form-submit />
+                    </x-form>
+                </form>
+            </div>
         </div>
     </div>
 </x-app-layout>

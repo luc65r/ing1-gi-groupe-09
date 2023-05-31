@@ -4,10 +4,11 @@
             {{ __('Projects') }}
         </h2>
     </x-slot>
-    <a href="javascript:history.back()">Revenir en arrière</a>
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <a  class ="voirP rounded-lg" href="javascript:history.back()">Revenir à l'évènement</a>
+
             @is('admin')
                 <a class="voirP rounded-lg" href="{{ route('contests.projects.create', ['contest' => $contest]) }}">
                     Ajouter un projet à l'évènement

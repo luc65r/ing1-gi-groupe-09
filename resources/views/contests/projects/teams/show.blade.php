@@ -4,10 +4,11 @@
             {{ $team->name }}
         </h2>
     </x-slot>
-    <a href="javascript:history.back()">Revenir en arrière</a>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <a class="voirP rounded-lg" href="javascript:history.back()">Revenir au projet</a>
+
+            <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg mt-6 ">
                 @if (!auth()->user()->student->teams()->exists())
                     <div class="p-6 bg-white border-b border-gray-200">
                         <div class="flex items-center">
@@ -20,7 +21,7 @@
                     </div>
                 @endif
 
-                <div class="p-6 bg-white border-b border-gray-200">
+                <div class="p-6 bg-white border-b border-gray-200 ">
                     <div class="p-6 bg-white border-gray-200">
 
                         <p><strong>Membres de l'équipe:</strong></p>
