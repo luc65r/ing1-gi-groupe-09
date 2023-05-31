@@ -12,6 +12,7 @@ class Resource extends Model
     protected $fillable = [
         'name',
         'url',
+        'project_id',
     ];
 
     public function project() {

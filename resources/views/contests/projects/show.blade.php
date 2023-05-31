@@ -23,6 +23,21 @@
                         <h1 class="text-lg">Description:</h1>
                         {!! \Illuminate\Support\Str::markdown($project->description) !!}
 
+                        <p>
+                            Ressources :
+                            @foreach ($project->resources as $resource)
+                                <a href="{{ $resource->url }}">{{ $resource->name }}</a>
+                            @endforeach
+
+                            @is('admin')
+                            <x-form action="{{ route('projects.resources.store', compact('project')) }}">
+                                <x-form-input name="name" label="Nom" required />
+                                <x-form-input name="url" type="url" label="Adresse" required />
+                                <x-form-submit />
+                            </x-form>
+                            @endis
+                        </p>
+
                         <div class="mt-6 flex">
                             <a class="voirP rounded-lg"
                                 href="{{ route('projects.quizzes.index', ['project' => $project]) }}">Répondre au
