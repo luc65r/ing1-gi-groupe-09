@@ -109,7 +109,6 @@ class ContestController extends Controller
      */
     public function destroy(Contest $contest)
     {
-        $contest->delete();
-        return back();
+        //
     }
 }
