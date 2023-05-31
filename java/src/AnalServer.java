@@ -82,7 +82,8 @@ public class AnalServer {
             exchange.getRequestBody().transferTo(baos);
             String contents = baos.toString("UTF-8");
 
-            String re = exchange.getRequestURI().getQuery();
+            String query = exchange.getRequestURI().getQuery();
+            String re = query.split("=")[1];
 
             Pattern pattern = Pattern.compile(re);
             Matcher matcher = pattern.matcher(contents);
