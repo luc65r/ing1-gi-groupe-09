@@ -108,7 +108,7 @@
                             label: 'Analyse du code',
                             data: [
                                 data[0].lineCount,
-                                data[1].functionCount
+                                data[2].functionCount
                             ],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
@@ -136,6 +136,7 @@
     data: {
         labels: ['if', 'while', 'for', 'switch'],
         datasets: [{
+            label : 'Analyse des structures de contrôle',
             data: [data[3].hits, data[4].hits, data[5].hits, data[6].hits],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -184,15 +185,25 @@
 
 
 
-.charts-container {
-    display: flex;
-    margin-left: 20%;
-    justify-content: space-around;
-    width: 30%;
-}
-#chart2 {
-    margin-left: 30%;
-}
+
+
+    .charts-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+        box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+    .charts-container canvas {
+        max-width: 550px;
+        max-height : 600px; /* Adjust the max-width as per your needs */
+        width: 100%;
+    }
+
 #fileInput {
     display: inline-block;
     padding: 10px 15px;
