@@ -11,6 +11,9 @@
                 <a href="{{ route('messages.create') }}">
                     Nouveau
                 </a>
+                <a href="{{ route('messages.sent') }}">
+                    Boîte d'envoi
+                </a>
                 <div class="p-6 bg-white border-b border-gray-200">
                     @foreach ($messages as $msg)
                         <div>

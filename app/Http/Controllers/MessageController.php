@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMessageRequest;
-use App\Models\MessageUser; 
+use App\Models\MessageUser;
 use App\Http\Requests\UpdateMessageRequest;
 use App\Models\Message;
 use App\Models\User;
@@ -29,7 +29,7 @@ class MessageController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     
+
      */
     public function create()
     {
@@ -44,23 +44,23 @@ class MessageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreMessageRequest $request)
-{
-    $request->validate([
-        'subject' => ['required', 'string', 'max:255'],
-        'body' => ['required', 'string'],
-        'recievers' => ['required', 'array', 'min:1'],
-        'recievers.*' => ['required', 'string', 'exists:App\Models\User,email'],
-    ]);
+    {
+        $request->validate([
+            'subject' => ['required', 'string', 'max:255'],
+            'body' => ['required', 'string'],
+            'recievers' => ['required', 'array', 'min:1'],
+            'recievers.*' => ['required', 'string', 'exists:App\Models\User,email'],
+        ]);
 
-    $msg = auth()->user()->messages()->create([
-        'subject' => $request->subject,
-        'body' => $request->body,
-    ]);
+        $msg = auth()->user()->messagesSent()->create([
+            'subject' => $request->subject,
+            'body' => $request->body,
+        ]);
 
-    $msg->recievers()->attach($request->recievers);
+        $msg->recievers()->attach(User::whereIn('email', $request->recievers)->pluck('id')->toArray());
 
-    return redirect()->route('messages.index');
-}
+        return redirect()->route('messages.index');
+    }
 
     /**
      * Display the specified resource.
@@ -88,14 +88,4 @@ class MessageController extends Controller
     {
         return view('messages.sent', ['messages' => auth()->user()->messagesSent]);
     }
-    public function searchUsers(Request $request)
-{
-    
-    $users = User::all();
-
-    dd($users);
-    return response()->json($users);
-}
-
-    
 }
