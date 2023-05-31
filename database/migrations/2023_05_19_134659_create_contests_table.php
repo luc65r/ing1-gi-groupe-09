@@ -17,6 +17,7 @@ class CreateContestsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->enum('type', ['battle', 'challenge']);
             $table->dateTimeTz('start');
             $table->dateTimeTz('end');
             $table->timestamps();

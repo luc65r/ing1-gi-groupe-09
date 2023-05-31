@@ -6,6 +6,9 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Contest;
 use App\Models\Project;
+use App\Models\Manager;
+
+use Illuminate\Http\Request;
 
 class ContestProjectController extends Controller
 {
@@ -22,7 +25,13 @@ class ContestProjectController extends Controller
      */
     public function index(Contest $contest)
     {
-        return view('contests.projects.index', ['projects' => $contest->projects, 'contest' => $contest]);
+
+        $managers = Manager::all();
+        return view('contests.projects.index', [
+            'projects' => $contest->projects,
+            'contest' => $contest,
+            'managers' => $managers,
+        ]);
     }
 
     /**
@@ -54,7 +63,7 @@ class ContestProjectController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('projects.show', $projet->id);
+        return redirect()->route('projects.show', ['project' => $projet->id]);
     }
 
     /**
@@ -63,11 +72,11 @@ class ContestProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Contest $contest, Project $project)
+    public function show(Project $project)
     {
         return view('contests.projects.show', [
             'project' => $project,
-            'contest' => $contest,
+            'contest' => $project->contest
         ]);
     }
 
@@ -109,5 +118,19 @@ class ContestProjectController extends Controller
     {
         $project->delete();
         return back();
+    }
+
+    public function assignManager(Request $request, Project $project)
+    {
+        $selectedManager = $request->input('manager-choice');
+
+        $manager = Manager::whereHas('user', function ($query) use ($selectedManager) {
+            $query->where('name', $selectedManager);
+        })->first();
+        if ($manager) {
+            $project->managers()->attach($manager->user->id);
+        }
+
+        return redirect()->back();
     }
 }

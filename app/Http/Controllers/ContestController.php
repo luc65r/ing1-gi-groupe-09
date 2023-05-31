@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContestRequest;
 use App\Http\Requests\UpdateContestRequest;
 use App\Models\Contest;
+use Illuminate\Validation\Rule;
 
 class ContestController extends Controller
 {
@@ -46,6 +47,7 @@ class ContestController extends Controller
             'description' => ['required', 'string'],
             'start' => ['required', 'date'],
             'end' => ['required', 'date', 'after:start'],
+            'type' => ['required', 'string', Rule::in(['battle', 'challenge'])]
         ]);
 
         $contest = Contest::create([
@@ -53,6 +55,7 @@ class ContestController extends Controller
             'description' => $request->description,
             'start' => $request->start,
             'end' => $request->end,
+            'type' => $request->type
         ]);
 
         return redirect()->route('contests.show', $contest->id);
@@ -67,7 +70,7 @@ class ContestController extends Controller
     public function show(Contest $contest)
     {
         return view('contests.show', [
-            'contest' => $contest,
+            'contest' => $contest
         ]);
     }
 
@@ -95,7 +98,8 @@ class ContestController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'start' => $request->start,
-            'end' => $request->end
+            'end' => $request->end,
+            'type' => $request->type
         ]);
 
         return redirect()->route('contests.show', $contest->id);

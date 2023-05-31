@@ -14,6 +14,12 @@
                 <x-form action="{{ route('contests.store') }}">
                     <x-form-input name="name" label="Nom" required />
                     <x-form-textarea name="description" label="Description" required />
+                    <x-form-select name="type" label="Type du contest" required>
+                        <option value="">Sélectionner le type</option>
+                        <option value="battle">Battle</option>
+                        <option value="challenge">Challenge</option>
+                    </x-form-select>
+
                     <x-form-input type="datetime-local" name="start" label="Début de l'activation" required />
                     <x-form-input type="datetime-local" name="end" label="Fin de l'activation" required />
                     <x-form-submit />
