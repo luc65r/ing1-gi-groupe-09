@@ -1,4 +1,9 @@
 <x-app-layout>
+
+    @php
+        use Illuminate\Support\Collection;
+    @endphp
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
@@ -23,7 +28,7 @@
                         <div class=" h-50 mt-6">
                             <h1>Découvrez notre évènement du moment</h1>
                             <br>
-                            <a   href="{{ route('dataMoment') }}" class="voirP rounded-lg">{{ __('Voir plus') }}</a>
+                            <a  href="{{ route('contests.show', 1) }}" class="voirP rounded-lg">{{ __('Voir plus') }}</a>
                         </div>
                     </div>
 
@@ -39,7 +44,7 @@
                         <div class="h-50 mt-6">
                             <h1>Anciens évènements</h1>
                             <br>
-                            <a   href="{{ route('dataAncien') }}" class="voirP rounded-lg">{{ __('Voir plus') }}</a>
+                            <a   href="{{ route('contests.index') }}" class="voirP rounded-lg">{{ __('Voir plus') }}</a>
 
                         </div>         
                     </div>   

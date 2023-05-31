@@ -132,7 +132,7 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:nth-child(odd) {
-  background-color:  #27b9bc4b; /* Couleur des lignes impaires */
+  background-color:  #0e876949; /* Couleur des lignes impaires */
 }
 
 
@@ -152,7 +152,9 @@ tbody tr:nth-child(odd) {
   float: left;
 }
 
-
+.bg-transparent{
+  background-color: rgba(0, 0, 0, 0)
+}
 .w-95P {
   width: 95%;
 }
@@ -210,3 +212,6 @@ tbody tr:nth-child(odd) {
   height: 100%;
 }
 
+.mess:hover{
+  background: #e0dbdb;
+}

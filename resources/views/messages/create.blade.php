@@ -5,9 +5,10 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6">
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="overflow-hidden shadow-xl sm:rounded-lg p-6 bg-accueil_pale">
                 <x-form action="{{ route('messages.store') }}" id="message-form">
                     <x-form-input name="subject" label="Sujet" required />
                     <x-form-input id="searchbar" onkeyup="search_animal()" placeholder="Rechercher email" label="Destinataires" name="coucou"/>
@@ -16,10 +17,10 @@
                             <li class="animals" style="display:none;">{{ $user->email }}</li>
                         @endforeach
                     </ol>
-                    <ul id="recipient-list"></ul>
+                    <ul style="background-color: transparent" id="recipient-list"></ul>
                     <x-form-errors name="recievers[]" />
                     <x-form-textarea name="body" label="Message" id="body" required />
-                    <button type="submit" id="send-button">Envoyer</button>
+                    <button class="voirP rounded-lg mt-6" type="submit" id="send-button">Envoyer</button>
                 </x-form>
             </div>
         </div>

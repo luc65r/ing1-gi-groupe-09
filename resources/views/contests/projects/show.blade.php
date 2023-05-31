@@ -27,9 +27,9 @@
                                 @endphp
 
                                 @if ($team)
-                                        <a href="{{ route('teams.show', ['team' => $team]) }}" class="voirP rounded-lg">Voir mon équipe</a>
+                                        <a href="{{ route('teams.show', ['team' => $team]) }}" class="voirP rounded-lg ml-2">Voir mon équipe</a>
                                 @else
-                                        <a href="{{ route('projects.teams.create', ['project' => $project]) }}" class="voirP rounded-lg">Créer mon équipe</a>
+                                        <a href="{{ route('projects.teams.create', ['project' => $project]) }}" class="voirP rounded-lg ml-2">Créer mon équipe</a>
                                 @endif
                             @endis
 

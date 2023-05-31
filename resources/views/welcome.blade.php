@@ -45,7 +45,7 @@
                 <div class=" h-50 mt-6">
                     <h1>Découvrez notre évènement du moment</h1>
                     <br>
-                    <a   href="{{ route('dataMoment') }}" class="voirP rounded-lg">{{ __('Voir plus') }}</a>
+                    <a   href="{{ route('contests.show', 1) }}" class="voirP rounded-lg">{{ __('Voir plus') }}</a>
                 </div>
             </div>
 
@@ -61,7 +61,7 @@
                 <div class="h-50 mt-6">
                     <h1>Anciens évènements</h1>
                     <br>
-                    <a   href="{{ route('dataAncien') }}" class="voirP rounded-lg">{{ __('Voir plus') }}</a>
+                    <a   href="{{ route('contests.index') }}" class="voirP rounded-lg">{{ __('Voir plus') }}</a>
 
                 </div>         
             </div>         
