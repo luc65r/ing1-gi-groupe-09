@@ -37,7 +37,8 @@ Route::get('/dataAncien', function () {
 
 Route::get('/graphs', function () {
     return view('graphs');
-})->name('graphs');
+})->middleware('auth')->name('graphs');
+
 
 
 Route::resource('contests', ContestController::class);
