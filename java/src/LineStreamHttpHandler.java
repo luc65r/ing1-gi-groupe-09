@@ -1,9 +1,9 @@
 import com.sun.net.httpserver.HttpExchange;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.function.Function;
 import java.util.stream.Stream;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
 
 class LineStreamHttpHandler extends JsonHttpHandler {
     private Function<Stream<String>, String> f;

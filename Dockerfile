@@ -36,8 +36,8 @@ WORKDIR /app
 COPY . .
 
 RUN mv docker/location-stats.conf /opt/docker/etc/nginx/vhost.common.d/20-location-stats.conf
-RUN mv docker/anal.conf /opt/docker/etc/supervisor.d
-RUN mv docker/anal.sh /opt/docker/bin/service.d/anal.sh
+RUN mv docker/analysis.conf /opt/docker/etc/supervisor.d
+RUN mv docker/analysis.sh /opt/docker/bin/service.d/analysis.sh
 RUN mv .env.prod .env
 
 RUN composer install --no-interaction --optimize-autoloader --no-dev

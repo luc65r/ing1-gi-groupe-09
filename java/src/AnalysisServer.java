@@ -1,23 +1,18 @@
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-import java.util.stream.Stream;
-import java.util.stream.Collectors;
-import java.util.Stack;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.io.ByteArrayOutputStream;
+import java.util.List;
+import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
-public class AnalServer {
+public class AnalysisServer {
     public static void main(String[] args) throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(8001), 0);
 
@@ -38,7 +33,7 @@ public class AnalServer {
             return "{\"functionCount\":" + count + "}";
         }));
 
-        server.createContext("/functionAnal", new LineStreamHttpHandler(lineStream -> {
+        server.createContext("/functionAnalysis", new LineStreamHttpHandler(lineStream -> {
             Stream<String> codeLines = lineStream
                 .filter(line -> !emptyLinePattern.matcher(line).matches());
             Stack<IndentCount> functions = new Stack<>();

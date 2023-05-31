@@ -2,4 +2,4 @@
 
 source /opt/docker/bin/config.sh
 
-exec java -jar /app/java/anal.jar
+exec java -jar /app/java/analysis.jar

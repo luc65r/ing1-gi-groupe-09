@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="run" name="">
 	<target name="create_run_jar" depends="build">
-		<jar destfile="anal.jar" filesetmanifest="mergewithoutmain">
+		<jar destfile="analysis.jar" filesetmanifest="mergewithoutmain">
 			<manifest>
-				<attribute name="Main-Class" value="AnalServer" />
+				<attribute name="Main-Class" value="AnalysisServer" />
 				<attribute name="Class-Path" value="." />
 			</manifest>
 			<fileset dir="bin" />
@@ -18,6 +18,6 @@
 		<echo message="Compilation en cours…" />
 	</target>
 	<target name="run" depends="create_run_jar">
-		<java jar="anal.jar" fork="true" />
+		<java jar="analysis.jar" fork="true" />
 	</target>
 </project>
