@@ -8,7 +8,8 @@ use App\Models\Contest;
 
 class ContestController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('is:admin')->except(['index', 'show']);
     }
 
@@ -78,7 +79,7 @@ class ContestController extends Controller
      */
     public function edit(Contest $contest)
     {
-        //
+        return view('contests.edit', compact('contest'));
     }
 
     /**
@@ -90,7 +91,14 @@ class ContestController extends Controller
      */
     public function update(UpdateContestRequest $request, Contest $contest)
     {
-        //
+        $contest->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'start' => $request->start,
+            'end' => $request->end
+        ]);
+
+        return redirect()->route('contests.show', $contest->id);
     }
 
     /**
@@ -101,6 +109,7 @@ class ContestController extends Controller
      */
     public function destroy(Contest $contest)
     {
-        //
+        $contest->delete();
+        return back();
     }
 }

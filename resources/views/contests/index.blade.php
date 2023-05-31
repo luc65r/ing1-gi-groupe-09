@@ -20,6 +20,17 @@
                                 {{ $contest->name }}
                             </a>
                         </div>
+                        @is('admin')
+                            <form action="{{ route('contests.destroy', $contest->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</button>
+                            </form>
+                            <div>
+                                <a href="{{ route('contests.edit', $contest->id) }}">Modifier</a>
+                            </div>
+                        @endis
                     @endforeach
                 </div>
             </div>
