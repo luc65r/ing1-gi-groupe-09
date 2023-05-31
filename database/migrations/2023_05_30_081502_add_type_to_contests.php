@@ -14,7 +14,7 @@ class AddTypeToContests extends Migration
     public function up()
     {
         Schema::table('contests', function (Blueprint $table) {
-            $table->enum('type', ['battle', 'challenge']);
+            $table->enum('type', ['battle', 'challenge'])->nullable();
         });
     }
 
