@@ -19,6 +19,8 @@ class Grade extends Model
         'grade',
     ];
 
+    public $timestamps = false;
+
     public function quiz()
     {
         return $this->belongsTo(Quiz::class);
