@@ -20,6 +20,7 @@
                         <thead>
                             <tr>
                                 <th>Nom</th>
+                                <th>Type</th>
                                 <th>Début</th>
                                 <th>Fin</th>
                                 <th>Actions</th>
@@ -32,6 +33,7 @@
 
                                     @if (auth()->user()->student || auth()->user()->admin)
                                         <td class="px-6 py-4 text-center">{{ $contest->name }}</td>
+                                        <td class="px-6 py-4 text-center uppercase">{{ $contest->type }}</td>
                                         <td class="px-6 py-4 text-center">{{ $contest->start }}</td>
                                         <td class="px-6 py-4 text-center">{{ $contest->end }}</td>
                                         <td class="px-6 py-4 text-center">
@@ -45,6 +47,7 @@
                                                     return $project->managers->contains(auth()->user()->manager);
                                                 }))
                                         <td class="px-6 py-4 text-center">{{ $contest->name }}</td>
+                                        <td class="px-6 py-4 text-center uppercase">{{ $contest->type }}</td>
                                         <td class="px-6 py-4 text-center">{{ $contest->start }}</td>
                                         <td class="px-6 py-4 text-center">{{ $contest->end }}</td>
                                         <td class="px-6 py-4 text-center">

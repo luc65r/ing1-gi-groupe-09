@@ -94,6 +94,14 @@ class ContestController extends Controller
      */
     public function update(UpdateContestRequest $request, Contest $contest)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+            'start' => ['required', 'date'],
+            'end' => ['required', 'date', 'after:start'],
+            'type' => ['required', 'string', Rule::in(['battle', 'challenge'])]
+        ]);
+
         $contest->update([
             'name' => $request->name,
             'description' => $request->description,

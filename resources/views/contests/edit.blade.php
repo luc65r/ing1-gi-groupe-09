@@ -18,7 +18,11 @@
                     <x-form action="{{ route('contests.update', $contest) }}">
                         <x-form-input name="name" label="Nom" value="{{ $contest->name }}" required />
                         <x-form-textarea name="description" label="Description" required />
-                        <x-form-input name="start" label="Début" value="{{ $contest->start }}" required />
+                        <x-form-select name="type" label="Type du contest" required>
+                            <option value="">Sélectionner le type</option>
+                            <option  value="battle">Battle</option>
+                            <option value="challenge">Challenge</option>
+                        </x-form-select>                        <x-form-input name="start" label="Début" value="{{ $contest->start }}" required />
                         <x-form-input name="end" label="Fin" value="{{ $contest->end }}" required />
                         <x-form-submit class="voirP rounded-lg" />
                     </x-form>
