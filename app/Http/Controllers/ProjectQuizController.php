@@ -197,11 +197,9 @@ class ProjectQuizController extends Controller
         return view('contests.projects.quizzes.teams', compact('teams', 'quiz'));
     }
 
-    public function showTeamQuiz(Quiz $quiz, Team $team)
+    public function showPodium(Quiz $quiz)
     {
-        $questions = $quiz->questions;
-        $responses = $team->answers()->whereIn('question_id', $questions->pluck('id'))->get();
-
-        return view('contests.projects.quizzes.qcm_team', compact('quiz', 'team', 'questions', 'responses'));
+        $grades = $quiz->grades->sortByDesc('grade');
+        return view('contests.projects.quizzes.podium', compact('quiz', 'grades'));
     }
 }

@@ -50,6 +50,7 @@ Route::prefix('quizzes/{quiz}/teams/{team}')->group(function () {
     Route::post('grades', [QuizGradeController::class, 'store'])->name('grades.store');
 });
 Route::get('/quizzes/{quiz}/teams', [ProjectQuizController::class, 'showTeams'])->name('quizzes.teams');
+Route::get('/quizzes/{quiz}/podium', [ProjectQuizController::class, 'showPodium'])->name('quizzes.podium');
 
 Route::get('messages/sent', [MessageController::class, 'sent'])
      ->middleware(['auth'])->name('messages.sent');
