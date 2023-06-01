@@ -18,7 +18,7 @@ database/database.sqlite
 
 !java
 java/*
-!java/anal.jar
+!java/analysis.jar
 
 !public
 !resources

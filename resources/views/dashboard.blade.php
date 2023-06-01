@@ -12,7 +12,7 @@
                 <div class="p-6 bg-white border-b border-gray-200 flex justify-center text-center bg-bleu-logo ">
 
                     @php
-                    $dataMoment = App\Models\Contest::orderBy('start')->get()->first()
+                    $dataMoment = App\Models\Contest::orderBy('start')->get()->first();
                     @endphp
 
                     @if ($dataMoment)
