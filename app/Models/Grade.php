@@ -9,9 +9,14 @@ class Grade extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = ['quiz_id', 'team_id'];
+    public $incrementing = false;
+    public $timestamps = false;
+
     protected $fillable = [
         'quiz_id',
         'team_id',
+        'grade',
     ];
 
     public function quiz()
