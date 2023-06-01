@@ -11,16 +11,11 @@
 
             <div class="overflow-hidden shadow-lg  sm:rounded-lg mt-8">
 
-                <form action="{{ route('projects.update', $project) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-
-                    <x-form action="{{ route('projects.update', $project) }}">
-                        <x-form-input name="name" label="Nom" value="{{ $project->name }}" required />
-                        <x-form-textarea name="description" label="Description" required />
-                        <x-form-submit class="voirP rounded-lg"/>
-                    </x-form>
-                </form>
+                <x-form action="{{ route('projects.update', $project) }}" method="PUT">
+                    <x-form-input name="name" label="Nom" value="{{ $project->name }}" required />
+                    <x-form-textarea name="description" label="Description" required />
+                    <x-form-submit class="voirP rounded-lg"/>
+                </x-form>
             </div>
         </div>
     </div>
