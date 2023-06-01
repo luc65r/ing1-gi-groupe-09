@@ -14,11 +14,13 @@ class Grade extends Model
         'team_id',
     ];
 
-    public function quiz() {
+    public function quiz()
+    {
         return $this->belongsTo(Quiz::class);
     }
 
-    public function team() {
+    public function team()
+    {
         return $this->belongsTo(Team::class);
     }
 }

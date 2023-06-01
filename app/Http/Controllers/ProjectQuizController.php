@@ -189,4 +189,19 @@ class ProjectQuizController extends Controller
 
         return view('contests.projects.quizzes.answers.show', compact('project', 'quiz', 'answers'));
     }
+
+    public function showTeams(Quiz $quiz)
+    {
+        $teams = $quiz->project->teams;
+
+        return view('contests.projects.quizzes.teams', compact('teams', 'quiz'));
+    }
+
+    public function showTeamQuiz(Quiz $quiz, Team $team)
+    {
+        $questions = $quiz->questions;
+        $responses = $team->answers()->whereIn('question_id', $questions->pluck('id'))->get();
+
+        return view('contests.projects.quizzes.qcm_team', compact('quiz', 'team', 'questions', 'responses'));
+    }
 }

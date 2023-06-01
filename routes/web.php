@@ -9,6 +9,7 @@ use App\Http\Controllers\ProjectTeamController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProjectResourceController;
 use App\Http\Controllers\QuizAnswerController;
+use App\Http\Controllers\QuizGradeController;
 
 /*
    |--------------------------------------------------------------------------
@@ -42,10 +43,17 @@ Route::resource('projects.resources', ProjectResourceController::class)->only(['
 
 Route::post('/teams/{team}/join', [ProjectTeamController::class, 'join'])->name('teams.join');
 
+Route::post('/grades', [QuizGradeController::class, 'store'])->name('grade.store');
+
 Route::post('/quizzes/{quiz}/responses', [QuizAnswerController::class, 'store'])->name('quizzes.responses.store');
 Route::get('/quizzes/{quiz}/answers', [ProjectQuizController::class, 'answers'])->name('projects.quizzes.answers');
 
 Route::post('/projects/{project}/assign', [ContestProjectController::class, 'assignManager'])->name('projects.assign');
+
+Route::get('/quizzes/{quiz}/teams', [ProjectQuizController::class, 'showTeams'])->name('quizzes.teams');
+Route::get('/quizzes/{quiz}/teams/{team}', [ProjectQuizController::class, 'showTeamQuiz'])->name('quizzes.qcm_team');
+
+
 
 Route::get('messages/sent', [MessageController::class, 'sent'])
     ->middleware(['auth'])->name('messages.sent');
