@@ -14,6 +14,14 @@
                     Nouveau quiz
                 </a>
             @endis
+            @php
+                $currentDateTime = now();
+                $activeQuiz = DB::table('quizzes')
+                    ->where('start', '<=', $currentDateTime)
+                    ->where('end', '>=', $currentDateTime)
+                    ->first();
+                // dd($activeQuiz);
+            @endphp
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6">
 
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -40,31 +48,16 @@
                             </thead>
 
                             <tbody>
-                                @foreach ($quizzes as $quiz)
-                                    <tr>
-                                        @is('student')
-                                        <td class="justify-center text-center">
-                                            <a href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
-                                                {{ $quiz->name }}
-                                            </a>
-                                        </td>
-                                        @else
-                                            @is('manager')
-                                                <td class="justify-center text-center">
-                                                    <a href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
-                                                        {{ $quiz->name }}
-                                                    </a>
-                                             </td>
-                                             @else
-                                             <td class="justify-center text-center">
-                                                    <p>
-                                                        {{ $quiz->name }}
-                                                    </p>
-                                             </td>
-                                             @endif
-                                        @endif
-                                        <td class="flex justify-center text-center">
-                                            @is('manager')
+                                <tr>
+                                    @is('manager')
+                                        @foreach ($quizzes as $quiz)
+                                            <td class="justify-center text-center">
+                                                <a href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
+                                                    {{ $quiz->name }}
+                                                </a>
+                                            </td>
+                                            <td class="flex justify-center text-center">
+
                                                 <form action="{{ route('quizzes.destroy', $quiz->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -78,18 +71,44 @@
                                                 <a class="voirP rounded-lg"
                                                     href="{{ route('quizzes.teams', ['quiz' => $quiz]) }}">Voir les
                                                     réponses</a>
-                                            @else
-                                                @is('student')
-                                                    <a class="voirP rounded-lg"
-                                                    href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
-                                                        {{ 'Voir les questions' }}
-                                                    </a>
-                                                @endis
-                                                @endis
-
+                                            </td>
+                                        @endforeach
+                                    @endis
+                                    @is('student')
+                                        @php
+                                            $user = Auth::user();
+                                            $team = $user->student
+                                                ->teams()
+                                                ->whereBelongsTo($project)
+                                                ->first();
+                                        @endphp
+                                        <td class="justify-center text-center">
+                                            <a href="{{ route('quizzes.show', ['quiz' => $activeQuiz->id]) }}">
+                                                {{ $activeQuiz->name }}
+                                            </a>
                                         </td>
-                                    </tr>
-                                @endforeach
+                                        @dump($team->hasAnsweredQuiz($activeQuiz))
+                                        @if ($team && $team->hasAnsweredQuiz($activeQuiz))
+                                            <a class="voirP rounded-lg"
+                                                href="{{ route('quizzes.show', ['quiz' => $activeQuiz->id]) }}">
+                                                {{ 'Voir les quetions' }}
+                                            </a>
+                                        @else
+                                            <a class="voirP rounded-lg"
+                                                href="{{ route('quizzes.show', ['quiz' => $activeQuiz->id]) }}">
+                                                {{ 'Voir les quedsqtions' }}
+                                            </a>
+                                        @endif
+                                    @else
+                                        <td class="justify-center text-center">
+                                            <p>
+                                                {{ $activeQuiz->name }}
+                                            </p>
+                                        </td>
+                                    @endis
+
+                                </tr>
+
                             </tbody>
                         @endif
                     </table>
