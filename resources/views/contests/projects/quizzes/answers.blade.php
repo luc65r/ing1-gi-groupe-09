@@ -11,7 +11,9 @@
 
             <div class="overflow-hidden shadow-xl sm:rounded-lg p-6 bg-accueil_pale mt-6">
                 <div class="p-6 bg-white border-b border-gray-200 rounded-lg">
-                    <b><h1 class="underline">{{ $quiz->name }}</h1></b>
+                    <b>
+                        <h1 class="underline">{{ $quiz->name }}</h1>
+                    </b>
                     <table>
                         <thead>
                             <tr>

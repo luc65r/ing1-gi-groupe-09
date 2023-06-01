@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 
 class AnswerController extends Controller
 {
-    public function show(Quiz $quiz, Team $team) {
+    public function show(Quiz $quiz, Team $team)
+    {
         $answers = $team->answers()->whereHas('question', function ($query) use ($quiz) {
             $query->where('quiz_id', $quiz->id);
         })->get()->mapWithKeys(function ($answer, $key) {

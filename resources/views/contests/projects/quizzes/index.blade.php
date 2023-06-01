@@ -58,10 +58,10 @@
                                                     réponses</a>
                                             @else
                                                 <a class="voirP rounded-lg"
-                                                   href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
+                                                    href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
                                                     {{ 'Voir les questions' }}
                                                 </a>
-                                                @endis
+                                            @endis
 
                                         </td>
                                     </tr>

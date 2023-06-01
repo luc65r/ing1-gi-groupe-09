@@ -40,19 +40,16 @@ class QuizGradeController extends Controller
      */
     public function store(Request $request, Quiz $quiz, Team $team)
     {
+
         $request->validate([
             'grade' => ['required', 'integer', 'between:0,4'],
-            'team_id' => ['required', 'exists:teams,id', Rule::in([$team->id])],
-            'quiz_id' => ['required', 'exists:quizzes,id', Rule::in([$quiz->id])],
         ]);
 
         Grade::create([
-            'grade' => ['required', 'integer', 'between:0,4'],
-            'team_id' => ['required', 'exists:teams,id', Rule::in([$team->id])],
-            'quiz_id' => ['required', 'exists:quizzes,id', Rule::in([$quiz->id])],
+            'grade' => $request->grade,
+            'team_id' => $team->id,
+            'quiz_id' => $quiz->id,
         ]);
-
-        return redirect()->route('quizzes.show', $quiz->id);
     }
 
     /**
