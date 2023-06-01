@@ -41,6 +41,8 @@ Route::resource('projects.teams', ProjectTeamController::class)->shallow();
 Route::resource('projects.resources', ProjectResourceController::class)->only(['store']);
 
 Route::post('/teams/{team}/join', [ProjectTeamController::class, 'join'])->name('teams.join');
+Route::post('/teams/{team}/quit', [ProjectTeamController::class, 'quit'])->name('teams.quit');
+Route::put('/teams/{team}/submit', [ProjectTeamController::class, 'submit'])->name('teams.submit');
 
 Route::post('/projects/{project}/assign', [ContestProjectController::class, 'assignManager'])->name('projects.assign');
 Route::get('/projects/{project}/podium', [ContestProjectController::class, 'podium'])->name('projects.podium');

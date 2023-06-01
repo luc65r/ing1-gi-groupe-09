@@ -1,3 +1,7 @@
+@php
+$user = Auth::user();
+@endphp
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -9,17 +13,27 @@
             <a class="voirP rounded-lg" href="javascript:history.back()">Revenir au projet</a>
 
             <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg mt-6 ">
-                @if (!auth()->user()->student->teams()->exists())
+                @is('student')
+                @if (!$user->student->teams()->whereBelongsTo($team->project)->exists())
                     <div class="p-6 bg-white border-b border-gray-200">
                         <div class="flex items-center">
-
                             <form action="{{ route('teams.join', ['team' => $team]) }}" method="POST">
                                 @csrf
                                 <button type="submit">Rejoindre l'équipe</button>
                             </form>
                         </div>
                     </div>
-                @endif
+                @elseif ($user->student->teams()->where('id', $team->id)->exists())
+                    <div class="p-6 bg-white border-b border-gray-200">
+                        <div class="flex items-center">
+                            <form action="{{ route('teams.quit', ['team' => $team]) }}" method="POST">
+                                @csrf
+                                <button type="submit">Quitter l'équipe</button>
+                            </form>
+                        </div>
+                    </div>
+                @endif                    
+                @endis
 
                 <div class="p-6 bg-white border-b border-gray-200 ">
                     <div class="p-6 bg-white border-gray-200">
@@ -33,6 +47,13 @@
                     </div>
 
                 </div>
+
+                @if ($user->student->teams()->where('id', $team->id)->exists())
+                    <x-form action="{{ route('teams.submit', compact('team')) }}" method="PUT">
+                        <x-form-input type="url" name="code" label="Rendu" value="{{ $team->code }}" required />
+                        <x-form-submit />
+                    </x-form>
+                @endif
 
             </div>
         </div>

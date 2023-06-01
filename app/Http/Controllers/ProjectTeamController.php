@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
+use App\Http\Requests\SubmitTeamRequest;
 use App\Models\Team;
 use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
@@ -76,7 +77,16 @@ class ProjectTeamController extends Controller
         return redirect()->route('teams.show', ['team' => $team]);
     }
 
+    public function quit(Team $team)
+    {
+        $user = Auth::user();
 
+        $user->student->teams()->detach($team->id);
+        if ($team->owner === $user->id)
+            return $this->destroy($team);
+
+        return redirect()->route('teams.show', ['team' => $team]);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -109,6 +119,21 @@ class ProjectTeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        //
+        $team->delete();
+
+        return redirect()->route('dashboard');
+    }
+
+    public function submit(SubmitTeamRequest $request, Team $team)
+    {
+        $request->validate([
+            'code' => ['required', 'url', 'max:255'],
+        ]);
+
+        $team->update([
+            'code' => $request->code,
+        ]);
+
+        return redirect()->route('teams.show', compact('team'));
     }
 }

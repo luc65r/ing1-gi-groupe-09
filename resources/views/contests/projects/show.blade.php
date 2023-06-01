@@ -53,9 +53,8 @@
 
                     <div class="mt-6 flex">
                         @if ($project->contest->type === 'battle')
-                            <div class="p-6 bg-white border-b border-gray-200">
-                                <a href="{{ route('projects.quizzes.index', ['project' => $project]) }}">Quizz</a>
-                            </div>
+                            <a href="{{ route('projects.quizzes.index', ['project' => $project]) }}"
+                               class="voirP rounded-lg ml-2">Quizz</a>
                             @is('student')
                                 @if ($team)
                                     <a href="{{ route('teams.show', ['team' => $team]) }}"
