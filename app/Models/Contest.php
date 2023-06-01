@@ -17,6 +17,11 @@ class Contest extends Model
         'end',
     ];
 
+    protected $casts = [
+        'start' => 'datetime',
+        'end' => 'datetime',
+    ];
+
     public function projects() {
         return $this->hasMany(Project::class);
     }
