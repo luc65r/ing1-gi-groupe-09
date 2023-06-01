@@ -89,7 +89,6 @@
                                                 {{ $activeQuiz->name }}
                                             </a>
                                         </td>
-                                        @dump($team->hasAnsweredQuiz($activeQuiz))
                                         @if ($team && $team->hasAnsweredQuiz($activeQuiz))
                                             <a class="voirP rounded-lg"
                                                 href="{{ route('quizzes.show', ['quiz' => $activeQuiz->id]) }}">
@@ -98,7 +97,7 @@
                                         @else
                                             <a class="voirP rounded-lg"
                                                 href="{{ route('quizzes.show', ['quiz' => $activeQuiz->id]) }}">
-                                                {{ 'Voir les quedsqtions' }}
+                                                {{ 'Voir les questions' }}
                                             </a>
                                         @endif
                                     @else

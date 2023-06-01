@@ -25,31 +25,7 @@
                     <h1 class="text-lg">Description:</h1>
                     {!! \Illuminate\Support\Str::markdown($project->description) !!}
 
-                    <p class="mt-3">
-                        Ressources :
-                        <br>
-                        @php
-                            $i = 0;
-                        @endphp
-                        @foreach ($project->resources as $resource)
-                            @php
-                                $i += 1;
-                            @endphp
-                            {{ $i }}
-                            <a class="underline" href="{{ $resource->url }}"> {{ $resource->name }}</a>
-                            <br>
-                        @endforeach
 
-                        <br>
-                        @is('admin')
-                        <h1>Ajouter une ressource:</h1>
-                        <x-form action="{{ route('projects.resources.store', compact('project')) }}">
-                            <x-form-input name="name" label="Nom" required />
-                            <x-form-input name="url" type="url" label="URL" required />
-                            <x-form-submit class="voirP rounded-lg" />
-                        </x-form>
-                    @endis
-                    </p>
 
                     <div class="mt-6 flex">
                         @if ($project->contest->type === 'battle')
@@ -67,9 +43,38 @@
                         @endif
 
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6 bg-accueil_pale">
+                    <p class="mt-3">
+                        Ressources :
+                        <br>
+                        @php
+                            $i = 0;
+                        @endphp
+                        @foreach ($project->resources as $resource)
+                            @php
+                                $i += 1;
+                            @endphp
+                            {{ $i }}
+                            <a class="underline" href="{{ $resource->url }}"> {{ $resource->name }}</a>
+                            <br>
+                        @endforeach
+
+                        <br>
+
+                    </p>               
+                    @is('admin')
+                        <h1>Ajouter une ressource:</h1>
+                        <x-form action="{{ route('projects.resources.store', compact('project')) }}">
+                            <x-form-input name="name" label="Nom" required />
+                            <x-form-input name="url" type="url" label="URL" required />
+                            <x-form-submit class="voirP rounded-lg" />
+                        </x-form>
+                    @endis
+            </div>
+        </div>
 </x-app-layout>
