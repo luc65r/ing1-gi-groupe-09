@@ -27,6 +27,11 @@
                         {{ __('Messages') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('graphs')" :active="request()->routeIs('graphs')" class="text-white">
+                        {{ __('Analyse de Code') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
