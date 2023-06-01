@@ -7,42 +7,45 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a class="voirP rounded-lg" href="javascript:history.back()">Revenir en arrière</a>
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    {!! \Illuminate\Support\Str::markdown($project->description) !!}
-                </div>
-                @if ($project->contest->type === 'battle')
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <a href="{{ route('projects.quizzes.index', ['project' => $project]) }}">Quizz</a>
-                    </div>
-                @endif
+            <a href="{{ route('contests.projects.index', $project->contest) }}" class="voirP rounded-lg ">Revenir à la liste de projets</a>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6">
 
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6">
                     <div class="p-6 bg-white border-b border-gray-200 shadow-lg bg-accueil_pale">
+
                         <h1 class="text-lg">Description:</h1>
                         {!! \Illuminate\Support\Str::markdown($project->description) !!}
 
-                        <p>
+                        <p class="mt-3">
                             Ressources :
+                            <br>
+                            @php
+                                $i =0;
+                            @endphp
                             @foreach ($project->resources as $resource)
-                                <a href="{{ $resource->url }}">{{ $resource->name }}</a>
+                                @php
+                                    $i +=1;
+                                @endphp
+                                {{$i}})
+                                <a class="underline" href="{{ $resource->url }}">  {{$resource->name }}</a>
+                                <br>
                             @endforeach
 
+                            <br>
                             @is('admin')
+                            <h1>Ajouter une ressource:</h1>
                             <x-form action="{{ route('projects.resources.store', compact('project')) }}">
                                 <x-form-input name="name" label="Nom" required />
-                                <x-form-input name="url" type="url" label="Adresse" required />
-                                <x-form-submit />
+                                <x-form-input name="url" type="url" label="URL" required />
+                                <x-form-submit class="voirP rounded-lg" />
                             </x-form>
                             @endis
                         </p>
 
                         <div class="mt-6 flex">
-                            <a class="voirP rounded-lg"
-                                href="{{ route('projects.quizzes.index', ['project' => $project]) }}">Répondre au
-                                quizz</a>
 
+                            @if ($project->contest->type === 'battle')
+                                    <a class="voirP rounded-lg" href="{{ route('projects.quizzes.index', ['project' => $project]) }}">Quizz</a>
+                            @endif
                             @is('student')
                                 @php
                                     $user = Auth::user();
@@ -64,6 +67,5 @@
                         </div>
 
                     </div>
-                </div>
             </div>
 </x-app-layout>

@@ -1,15 +1,22 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Analyse des graphiques
+            Analyse de code
         </h2>
     </x-slot>
 
-    <div class="form">
-        <p> Veuillez choisir un fichier .py </p>
-        <input id="fileInput" type="file" name="file">
-        <button class="voirP rounded-lg" id="submitButton" type="button">Envoyer</button>
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="overflow-hidden shadow-xl sm:rounded-lg p-6 bg-accueil_pale">
+                <div class="flex justify-center text-cente">
+                    <p class="w-demi"> Veuillez choisir un fichier .py </p>
+                </div>
+                <input id="fileInput" type="file" name="file">
+                <button class="voirP rounded-lg" id="submitButton" type="button">Envoyer</button>
+            </div>
+        </div>
     </div>
+
     <div class="charts-container">
         <canvas id="chart1"></canvas>
         <canvas id="chart2"></canvas>

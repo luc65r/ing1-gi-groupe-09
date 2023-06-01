@@ -50,7 +50,7 @@
                 <div class=" h-50 mt-6">
                     <h1>Découvrez notre évènement du moment</h1>
                     <br>
-                    <a   href="{{ route('contests.show', 1) }}" class="voirP rounded-lg">{{ __('Voir plus') }}</a>
+                    <a href="{{ route('contests.show', App\Models\Contest::orderBy('start')->get()->first()) }}" class="voirP rounded-lg">{{ __('Voir plus') }}</a>
                 </div>
             </div>
 
