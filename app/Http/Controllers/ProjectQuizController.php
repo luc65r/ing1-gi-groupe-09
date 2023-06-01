@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Quiz;
 use App\Models\Question;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class ProjectQuizController extends Controller
@@ -15,9 +16,9 @@ class ProjectQuizController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function index(Project $project)
+    public function index(Project $project, Team $team)
     {
-        return view('contests.projects.quizzes.index', ['quizzes' => $project->quizzes, 'project' => $project]);
+        return view('contests.projects.quizzes.index', ['quizzes' => $project->quizzes, 'project' => $project, 'team' => $team]);
     }
 
     /**
@@ -167,7 +168,7 @@ class ProjectQuizController extends Controller
         return back();
     }
 
-    public function responses(Project $project, Quiz $quiz)
+    public function answers(Project $project, Quiz $quiz)
     {
         $questions = $quiz->questions()->get();
         $answers = [];
@@ -176,6 +177,6 @@ class ProjectQuizController extends Controller
             $answers[$question->id] = $question->answers()->where('project_id', $project->id)->get();
         }
 
-        return view('contests.projects.quizzes.responses', compact('project', 'quiz', 'answers'));
+        return view('contests.projects.quizzes.answers', compact('project', 'quiz', 'answers'));
     }
 }

@@ -12,13 +12,18 @@ class Answer extends Model
     protected $fillable = [
         'question_id',
         'team_id',
+        'answer',
     ];
 
-    public function question() {
+    public $timestamps = false;
+
+    public function question()
+    {
         return $this->belongsTo(Question::class);
     }
 
-    public function team() {
+    public function team()
+    {
         return $this->belongsTo(Team::class);
     }
 }

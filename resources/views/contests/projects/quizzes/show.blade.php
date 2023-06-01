@@ -24,12 +24,12 @@
                         }
                     @endphp
 
-                    <x-form action="" method="POST">
+                    <x-form action="{{ route('quizzes.responses.store', ['quiz' => $quiz]) }}" method="POST">
                         @foreach ($questions as $question)
                             <div class="p-6 bg-white border-b border-gray-200 block">
                                 {{ $question->question }}
                                 @if ($team && $team->students->first()->user->id === $loggedInUser->student->user->id)
-                                    <x-form-textarea name="reponse" label="Réponse" required />
+                                    <x-form-textarea name="reponses[{{ $question->id }}]" label="Réponse" required />
                                 @endif
 
                             </div>

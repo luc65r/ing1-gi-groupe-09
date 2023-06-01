@@ -40,4 +40,9 @@ class Team extends Model
     {
         return $this->hasMany(Grade::class);
     }
+
+    public function hasAnsweredQuiz($quiz)
+    {
+        return $this->answers()->where('quiz_id', $quiz->id)->exists();
+    }
 }

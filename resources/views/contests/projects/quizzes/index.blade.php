@@ -19,9 +19,15 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     @foreach ($quizzes as $quiz)
                         <div>
-                            <a href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
-                                {{ $quiz->name }}
-                            </a>
+
+                            @if ($team->hasAnsweredQuiz($quiz))
+                                <a href="{{ route('quizzes.responses', ['quiz' => $quiz]) }}">Voir les réponses</a>
+                            @else
+                                <a href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
+                                    {{ $quiz->name }}
+                                </a>
+                            @endif
+
                             @is('manager')
                                 <form action="{{ route('quizzes.destroy', $quiz->id) }}" method="POST">
                                     @csrf
