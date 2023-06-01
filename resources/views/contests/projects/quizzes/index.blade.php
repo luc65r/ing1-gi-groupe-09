@@ -48,9 +48,10 @@
                             </thead>
 
                             <tbody>
-                                <tr>
+                                
                                     @is('manager')
                                         @foreach ($quizzes as $quiz)
+                                        <tr>
                                             <td class="justify-center text-center">
                                                 <a href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
                                                     {{ $quiz->name }}
@@ -72,6 +73,7 @@
                                                     href="{{ route('quizzes.teams', ['quiz' => $quiz]) }}">Voir les
                                                     réponses</a>
                                             </td>
+                                        </tr>
                                         @endforeach
                                     @endis
                                     @is('student')
@@ -100,11 +102,7 @@
                                             </a>
                                         @endif
                                     @else
-                                        <td class="justify-center text-center">
-                                            <p>
-                                                {{ $activeQuiz->name }}
-                                            </p>
-                                        </td>
+
                                     @endis
 
                                 </tr>
