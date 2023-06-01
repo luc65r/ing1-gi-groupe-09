@@ -29,18 +29,40 @@
                             <thead>
                                 <tr>
                                     <th>Nom</th>
-                                    <th>Actions</th>
+                                    @is('student')
+                                        <th>Action</th>
+                                    @else
+                                        @is('manager')
+                                            <th>Actions</th>
+                                        @endis
+                                    @endis
                                 </tr>
                             </thead>
 
                             <tbody>
                                 @foreach ($quizzes as $quiz)
                                     <tr>
+                                        @is('student')
                                         <td class="justify-center text-center">
                                             <a href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
                                                 {{ $quiz->name }}
                                             </a>
                                         </td>
+                                        @else
+                                            @is('manager')
+                                                <td class="justify-center text-center">
+                                                    <a href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
+                                                        {{ $quiz->name }}
+                                                    </a>
+                                             </td>
+                                             @else
+                                             <td class="justify-center text-center">
+                                                    <p>
+                                                        {{ $quiz->name }}
+                                                    </p>
+                                             </td>
+                                             @endif
+                                        @endif
                                         <td class="flex justify-center text-center">
                                             @is('manager')
                                                 <form action="{{ route('quizzes.destroy', $quiz->id) }}" method="POST">
@@ -57,10 +79,12 @@
                                                     href="{{ route('quizzes.teams', ['quiz' => $quiz]) }}">Voir les
                                                     réponses</a>
                                             @else
-                                                <a class="voirP rounded-lg"
-                                                   href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
-                                                    {{ 'Voir les questions' }}
-                                                </a>
+                                                @is('student')
+                                                    <a class="voirP rounded-lg"
+                                                    href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
+                                                        {{ 'Voir les questions' }}
+                                                    </a>
+                                                @endis
                                                 @endis
 
                                         </td>
