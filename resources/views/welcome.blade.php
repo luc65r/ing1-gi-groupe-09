@@ -13,21 +13,26 @@
     </head>
     <body class="antialiased bg-accueil">
 
-        <header class="w-full h-16 fixed top-0 right-0 px-6 py-4 sm:block">
-            <img class="logo" src="{{ asset('images/iapau_logo.png') }}" alt="Description de l'image">
+        <header class="w-full h-16 fixed top-0 right-0 px-6 py-4 sm:block flex">
+            <div class="flex">
+                <img class="logo" src="{{ asset('images/iapau_logo.png') }}" alt="Description de l'image">
 
-            @if (Route::has('login'))
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="flex justify-end items-center text-sm text-white  underline">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="flex justify-end items-center text-sm text-white  underline">Log in</a>
+                @if (Route::has('login'))
+                    <div style="float: right" class="ml-auto">
+                        @auth
+                            <a href="{{ url('/dashboard') }}" style="margin-right: 8px; "  class="text-sm justify-end text-white ml-2 underline">Dashboard</a>
+                        @else
+                        </div>
+                        <div style="float: right" class="ml-auto">
+                            <a href="{{ route('login') }}" style="margin-right: 8px; " class="text-sm justify-end text-white ml-2 underline">Log in</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class=" flex justify-end items-center ml-4 text-sm text-white  underline">Register</a>
-                        @endif
-                    @endauth
-            @endif
-
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="text-sm  text-white underline mr-2">Register</a>
+                            @endif
+                            </div>
+                        @endauth
+                @endif
+            </div>
             
         </header>
 

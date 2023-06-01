@@ -28,8 +28,13 @@
                         <a class="voirP rounded-lg mt-6" href="{{ route('contests.projects.index', ['contest' => $contest->id]) }}">
                             Accéder aux projets associés
                         </a>
+                        @else
+                        <p class="italic">Inscrivez-vous pour participer</p>
+
                         @endauth
+
                     @endif
+                    
                 </div>
 
             </div>

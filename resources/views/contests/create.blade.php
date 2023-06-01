@@ -22,7 +22,7 @@
 
                     <x-form-input type="datetime-local" name="start" label="Début de l'activation" required />
                     <x-form-input type="datetime-local" name="end" label="Fin de l'activation" required />
-                    <x-form-submit />
+                    <x-form-submit class="voirP rounded-lg" />
                 </x-form>
             </div>
         </div>

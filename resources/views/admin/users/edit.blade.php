@@ -20,7 +20,7 @@
                     @csrf
                     @method('PUT')
 
-                    <div class="mb-4">
+                    <div class="mb-4 input-container">
                         <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nom :</label>
                         <input class="rounded-lg w-full" type="text" name="name" id="name" value="{{ $user->name }}" class="form-input w-full">
                         @error('name')
@@ -28,7 +28,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-4">
+                    <div class="mb-4 input-container">
                         <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email :</label>
                         <input class="rounded-lg w-full" type="email" name="email" id="email" value="{{ $user->email }}" class="form-input w-full">
                         @error('email')
@@ -36,7 +36,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-4">
+                    <div class="mb-4 input-container">
                         <label for="telephone" class="block text-gray-700 text-sm font-bold mb-2">Telephone :</label>
                         <input class="rounded-lg w-full" type="telephone" name="telephone" id="telephone" value="{{ $user->telephone }}" class="form-input w-full">
                         @error('telephone')
@@ -79,7 +79,7 @@
                     @endif
 
                     <div class="flex justify-end">
-                        <button type="submit">
+                        <button class="voirP rounded-lg" type="submit">
                             Enregistrer les modifications
                         </button>
                     </div>

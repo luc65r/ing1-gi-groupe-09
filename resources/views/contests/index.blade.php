@@ -17,9 +17,6 @@
             <div class="overflow-hidden shadow-lg  sm:rounded-lg mt-8">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="min-w-full divide-y divide-gray-200">
-                        @php
-                            $sortedContests = $contests->sortBy('start');
-                        @endphp
                         <thead>
                             <tr>
                                 <th>Nom</th>
@@ -59,10 +56,9 @@
                                     @endif
                             @endif
                             @is('admin')
-                                <div>
-                                    <a class="voirP rounded-lg"
+                                    <a style="margin-left:1rem" class="voirP rounded-lg"
                                         href="{{ route('contests.edit', $contest->id) }}">Modifier</a>
-                                </div>
+                                
                             @endis
 
                             </tr>

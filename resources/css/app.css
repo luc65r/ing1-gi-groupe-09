@@ -16,10 +16,16 @@
 
 .avanc:hover{
   transform: scale(1.02);
+  transition: all 0.6s ease-out;
 }
   
 img.logo{
   width: 5%;
+}
+
+.input-container input{
+  height: 2rem;
+  border-color: transparent;
 }
 
 .mt-12 {
@@ -98,6 +104,10 @@ img.logo{
   width: 95%;
 }
 
+.w-200P {
+  width: 95%;
+}
+
 .w-main {
   width: 2rem;
 }
@@ -132,9 +142,12 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:nth-child(odd) {
-  background-color:  #0e876949; /* Couleur des lignes impaires */
+  background-color:  #27b9bc4b; /* Couleur des lignes impaires */
 }
 
+.ml-auto {
+  margin-left: auto !important;
+}
 
 .bg-accueil{
   background: linear-gradient(70deg, #0e8769, #27babc,#2ea3f2);
@@ -215,3 +228,5 @@ tbody tr:nth-child(odd) {
 .mess:hover{
   background: #e0dbdb;
 }
+
+

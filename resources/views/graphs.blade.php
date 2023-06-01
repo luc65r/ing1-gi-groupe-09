@@ -37,7 +37,7 @@
                     headers: { 'Content-Type': 'application/octet-stream' },
                     body: arrayBuffer
                 }),
-                fetch('/stats/functionAnalysis', {
+                fetch('/stats/functionAnal', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/octet-stream' },
                     body: arrayBuffer

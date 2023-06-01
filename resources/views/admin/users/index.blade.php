@@ -8,7 +8,7 @@
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <a class="btn btn-primary voirP rounded-lg mb-3" href="{{ route('admin.users.create') }}">Créer un nouvel utilisateur</a>
-            <input id="filterbar" onkeyup="filter_users()" placeholder="Filtrer utilisateurs" />
+            <input style="padding: 0.6rem; border-color: #00000;" class=" bg-white rounded-lg" id="filterbar" onkeyup="filter_users()" placeholder="Filtrer utilisateurs" />
 
             <div class="overflow-hidden shadow-lg  sm:rounded-lg mt-8">
                 <div class="p-6 bg-white border-b border-gray-200">
