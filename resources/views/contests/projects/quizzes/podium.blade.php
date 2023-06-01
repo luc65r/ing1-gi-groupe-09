@@ -20,10 +20,11 @@
                         </thead>
                         <tbody>
                             <tr>
-                            @foreach ($grades as $grade)
-                                <tr>{{ $grade->team->name }}</tr>
-                                <tr>{{ $grade->grade }}</tr>
-                            @endforeach
+                                @foreach ($grades as $grade)
+                                    <td>{{ $grade->team->name }}</td>
+                                    <td>{{ $grade->grade }}</td>
+                                @endforeach
+                            </tr>
                         </tbody>
                     </table>
                 </div>
