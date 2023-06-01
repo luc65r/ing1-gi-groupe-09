@@ -56,7 +56,7 @@ class ProjectQuizController extends Controller
             'project_id' => $project->id,
             'name' => $request->name,
             'start' => $request->start,
-            'end' => $requset->end,
+            'end' => $request->end,
         ]);
 
         Question::create([
@@ -167,10 +167,16 @@ class ProjectQuizController extends Controller
      */
     public function destroy(Project $project, Quiz $quiz)
     {
+        foreach ($quiz->questions as $question) {
+            $question->answers()->delete();
+        }
+
         $quiz->questions()->delete();
         $quiz->delete();
+
         return back();
     }
+
 
     public function answers(Project $project, Quiz $quiz)
     {
@@ -181,6 +187,6 @@ class ProjectQuizController extends Controller
             $answers[$question->id] = $question->answers()->where('project_id', $project->id)->get();
         }
 
-        return view('contests.projects.quizzes.answers', compact('project', 'quiz', 'answers'));
+        return view('contests.projects.quizzes.answers.show', compact('project', 'quiz', 'answers'));
     }
 }

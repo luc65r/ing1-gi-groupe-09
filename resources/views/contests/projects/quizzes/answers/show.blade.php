@@ -27,11 +27,13 @@
                                             {{ $answer->answer }}
                                         @endforeach
                                     </td>
+
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    <a href="{{ route('quizzes.edit', $quiz) }}">Modifier</a>
+                    {{-- <a href="{{ route('answers.edit', ['quiz' => $quiz, 'answers' => $question->answers]) }}">Modif</a> --}}
+
                 </div>
             </div>
         </div>

@@ -70,9 +70,9 @@ class QuizAnswerController extends Controller
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Answer $answer)
+    public function edit(Quiz $quiz)
     {
-        //
+        return view('contests.projects.quizzes.answers.edit', compact('quiz', 'answer'));
     }
 
     /**

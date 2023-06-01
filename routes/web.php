@@ -37,12 +37,13 @@ Route::resource('contests', ContestController::class);
 Route::resource('contests.projects', ContestProjectController::class)->shallow();
 Route::resource('projects.quizzes', ProjectQuizController::class)->shallow();
 Route::resource('projects.teams', ProjectTeamController::class)->shallow();
+Route::resource('quizzes.answers', QuizAnswerController::class)->shallow();
 Route::resource('projects.resources', ProjectResourceController::class)->only(['store']);
 
 Route::post('/teams/{team}/join', [ProjectTeamController::class, 'join'])->name('teams.join');
 
 Route::post('/quizzes/{quiz}/responses', [QuizAnswerController::class, 'store'])->name('quizzes.responses.store');
-Route::get('/projects/{project}/quizzes/{quiz}/answers', [ProjectQuizController::class, 'answers'])->name('projects.quizzes.answers');
+Route::get('/quizzes/{quiz}/answers', [ProjectQuizController::class, 'answers'])->name('projects.quizzes.answers');
 
 Route::post('/projects/{project}/assign', [ContestProjectController::class, 'assignManager'])->name('projects.assign');
 

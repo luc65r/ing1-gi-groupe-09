@@ -21,7 +21,8 @@
                         <div>
 
                             @if ($team->hasAnsweredQuiz($quiz))
-                                <a href="{{ route('quizzes.responses', ['quiz' => $quiz]) }}">Voir les réponses</a>
+                                <a href="{{ route('quizzes.answers', ['quiz' => $quiz]) }}">Voir les
+                                    réponses</a>
                             @else
                                 <a href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
                                     {{ $quiz->name }}
@@ -37,7 +38,6 @@
                                 </form>
                                 <a href="{{ route('quizzes.edit', ['project' => $project, 'quiz' => $quiz->id]) }}">Modifier
                                 </a>
-                                <a href="{{ route('quizzes.responses', ['quiz' => $quiz]) }}">Voir les réponses</a>
                             @endis
                         </div>
                     @endforeach
