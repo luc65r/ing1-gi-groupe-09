@@ -1270,7 +1270,7 @@ select {
 
 .avanc:hover{
   transform: scale(1.02);
-  transition: all 0.6s ease-out;
+  transition: all 0.6s ease-in-out;
 }
   
 img.logo{
