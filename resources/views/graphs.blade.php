@@ -11,8 +11,10 @@
                 <div class="flex justify-center text-cente">
                     <p class="w-demi"> Veuillez choisir un fichier .py </p>
                 </div>
-                <input id="fileInput" type="file" name="file">
-                <button class="voirP rounded-lg" id="submitButton" type="button">Envoyer</button>
+                <div class="flex justify-center text-cente">
+                    <input id="fileInput" type="file" name="file">
+                    <button class="voirP rounded-lg" id="submitButton" type="button">Envoyer</button>
+                </div>
             </div>
         </div>
     </div>
