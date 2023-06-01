@@ -57,27 +57,11 @@
                                                     href="{{ route('quizzes.teams', ['quiz' => $quiz]) }}">Voir les
                                                     réponses</a>
                                             @else
-                                                @is('student')
-                                                    @php
-                                                        $user = Auth::user();
-                                                        $team = $user->student
-                                                            ->teams()
-                                                            ->whereBelongsTo($project)
-                                                            ->first();
-                                                    @endphp
-                                                    @if ($team->hasAnsweredQuiz($quiz))
-                                                        <a class="voirP rounded-lg"
-                                                            href="{{ route('answers.show', ['team' => $team, 'quiz' => $quiz]) }}">
-                                                            {{ 'Voir les réponses' }}
-                                                        </a>
-                                                    @else
-                                                        <a class="voirP rounded-lg"
-                                                            href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
-                                                            {{ 'Voir les questions' }}
-                                                        </a>
-                                                    @endif
+                                                <a class="voirP rounded-lg"
+                                                   href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
+                                                    {{ 'Voir les questions' }}
+                                                </a>
                                                 @endis
-                                            @endis
 
                                         </td>
                                     </tr>

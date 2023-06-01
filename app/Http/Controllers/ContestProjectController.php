@@ -133,4 +133,10 @@ class ContestProjectController extends Controller
 
         return redirect()->back();
     }
+
+    public function podium(Project $project)
+    {
+        $teams = $project->teams;
+        return view('contests.projects.podium', compact('teams'));
+    }
 }

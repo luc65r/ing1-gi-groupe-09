@@ -43,6 +43,7 @@ Route::resource('projects.resources', ProjectResourceController::class)->only(['
 Route::post('/teams/{team}/join', [ProjectTeamController::class, 'join'])->name('teams.join');
 
 Route::post('/projects/{project}/assign', [ContestProjectController::class, 'assignManager'])->name('projects.assign');
+Route::get('/projects/{project}/podium', [ContestProjectController::class, 'podium'])->name('projects.podium');
 
 Route::prefix('quizzes/{quiz}/teams/{team}')->group(function () {
     Route::get('answers', [AnswerController::class, 'show'])->name('answers.show');

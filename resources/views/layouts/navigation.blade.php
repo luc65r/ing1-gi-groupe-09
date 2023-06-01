@@ -32,6 +32,9 @@
                         {{ __('Analyse de Code') }}
                     </x-nav-link>
                 </div>
+
+
+
             </div>
 
             <!-- Settings Dropdown -->
