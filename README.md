@@ -5,12 +5,14 @@
 Prérequis :
 - PHP >= 7.4
 - composer
-- sqilte3
+- sqlite3
 - php-sqlite3
-- npm et node récents
+- Node.js et npm récents ([Note Version Manager](https://github.com/nvm-sh/nvm))
 
 ```
 composer install
+mv .env.example .env
+php artisan key:generate
 npm install
 npm run dev
 touch database/database.sqlite
@@ -19,6 +21,15 @@ php artisan db:seed
 php artisan serve
 ```
 
+Le site se trouve à l'adresse `localhost:8000`.
+
 ## Mode production
 
 Il y a un docker : `luc65r/ing1-gi-groupe-09`
+
+Pour le lancer :
+```
+docker run --rm -t -p 9000:80 luc65r/ing1-gi-groupe-09:latest
+```
+
+Le site se trouve à l'adresse `localhost:9000`.
