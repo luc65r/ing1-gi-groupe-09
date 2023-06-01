@@ -40,16 +40,27 @@ class QuizGradeController extends Controller
      */
     public function store(Request $request, Quiz $quiz, Team $team)
     {
-
         $request->validate([
             'grade' => ['required', 'integer', 'between:0,4'],
         ]);
 
-        Grade::create([
-            'grade' => $request->grade,
+        $grade = Grade::where([
             'team_id' => $team->id,
             'quiz_id' => $quiz->id,
-        ]);
+        ])->first();
+
+        if ($grade) {
+            $grade->update([
+                'grade' => $request->grade,
+            ]);
+        } else {
+            Grade::create([
+                'grade' => $request->grade,
+                'team_id' => $team->id,
+                'quiz_id' => $quiz->id,
+            ]);
+        }
+        return redirect()->route('answers.show', ['quiz' => $quiz->id, 'team' => $team]);
     }
 
     /**

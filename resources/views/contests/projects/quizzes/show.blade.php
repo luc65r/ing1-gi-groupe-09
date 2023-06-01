@@ -36,7 +36,6 @@
                             </div>
                         @endforeach
 
-
                         @if ($team && $team->students->first()->user->id === $loggedInUser->student->user->id)
                             <div>
                                 <x-form-submit></x-form-submit>

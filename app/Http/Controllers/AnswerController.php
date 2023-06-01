@@ -24,6 +24,7 @@ class AnswerController extends Controller
 
     public function store(StoreAnswerRequest $request, Quiz $quiz, Team $team)
     {
+
         foreach ($request->input('reponses') as $questionId => $response) {
             Answer::create([
                 'question_id' => $questionId,
@@ -31,7 +32,6 @@ class AnswerController extends Controller
                 'answer' => $response,
             ]);
         }
-
-        return redirect()->route('quizzes.show', $quiz->id);
+        return redirect()->route('quizzes.show', ['quiz' => $quiz->id, 'team' => $team]);
     }
 }
