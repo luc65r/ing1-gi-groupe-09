@@ -42,10 +42,7 @@ Route::post('/teams/{team}/join', [ProjectTeamController::class, 'join'])->name(
 
 Route::get('/quizzes/{quiz}/responses', [ProjectQuizController::class, 'responses'])->name('quizzes.responses');
 
-<<<<<<< HEAD
 Route::post('/projects/{project}/assign', [ContestProjectController::class, 'assignManager'])->name('projects.assign');
-=======
->>>>>>> css
 
 Route::get('messages/sent', [MessageController::class, 'sent'])
      ->middleware(['auth'])->name('messages.sent');
