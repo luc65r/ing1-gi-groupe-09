@@ -12,6 +12,13 @@ class Quiz extends Model
     protected $fillable = [
         'name',
         'project_id',
+        'start',
+        'end',
+    ];
+
+    protected $casts = [
+        'start' => 'datetime',
+        'end' => 'datetime',
     ];
 
     public function project() {

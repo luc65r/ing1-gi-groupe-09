@@ -29,7 +29,7 @@ class ProjectQuizController extends Controller
      */
     public function create(Project $project)
     {
-        return view('contests.projects.quizzes.create', ['quizzes' => $project->quizzes, 'project' => $project]);
+        return view('contests.projects.quizzes.create', ['project' => $project]);
     }
 
     /**
@@ -48,11 +48,15 @@ class ProjectQuizController extends Controller
             'question3' => ['required', 'string'],
             'question4' => ['required', 'string'],
             'question5' => ['required', 'string'],
+            'start' => ['required', 'date'],
+            'end' => ['required', 'date', 'after:start'],
         ]);
 
         $quiz = Quiz::create([
             'project_id' => $project->id,
-            'name' => $request->name
+            'name' => $request->name,
+            'start' => $request->start,
+            'end' => $requset->end,
         ]);
 
         Question::create([
@@ -76,7 +80,7 @@ class ProjectQuizController extends Controller
             'quiz_id' => $quiz->id,
         ]);
 
-        return redirect()->route('projects.quizzes.index', ['quizzes' => $project->quizzes, 'project' => $project]);
+        return redirect()->route('projects.quizzes.index', ['project' => $project]);
     }
 
     /**

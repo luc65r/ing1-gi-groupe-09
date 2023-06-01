@@ -16,6 +16,8 @@ class CreateQuizzesTable extends Migration
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->dateTimeTz('start');
+            $table->dateTimeTz('end');
             $table->foreignId('project_id')->constrained();
             $table->timestamps();
         });
