@@ -7,7 +7,9 @@
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="overflow-hidden shadow-xl sm:rounded-lg p-6 bg-accueil_pale">
+            <a class="voirP rounded-lg" href="javascript:history.back()">Revenir à la liste des projets</a>
+
+            <div class="overflow-hidden shadow-lg  sm:rounded-lg mt-8">
 
                 <form action="{{ route('projects.update', $project) }}" method="POST">
                     @csrf
@@ -16,7 +18,7 @@
                     <x-form action="{{ route('projects.update', $project) }}">
                         <x-form-input name="name" label="Nom" value="{{ $project->name }}" required />
                         <x-form-textarea name="description" label="Description" required />
-                        <x-form-submit />
+                        <x-form-submit class="voirP rounded-lg"/>
                     </x-form>
                 </form>
             </div>

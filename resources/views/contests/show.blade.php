@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if (Route::has('login'))
                 @auth
-                    <a class="voirP rounded-lg" href="javascript:history.back()">
+                <a class="voirP rounded-lg mt-6" href="{{ route('contests.index') }}">
                         Retour à la liste des évènements
                     </a>
                 @else
@@ -20,6 +20,10 @@
             @endif
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6">
                 <div class="p-6 bg-white border-b border-gray-200 shadow-lg bg-accueil_pale">
+                    <h1 class="text-lg">Type:</h1> 
+                    <p class="uppercase">{!! \Illuminate\Support\Str::markdown($contest->type) !!}</p>
+
+                    
                     <h1 class="text-lg">Description:</h1> 
                     <p>{!! \Illuminate\Support\Str::markdown($contest->description) !!}</p>
                     <br>

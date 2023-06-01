@@ -19,7 +19,7 @@
                     <x-form-input name="question5" label="Question 5" required />
                     <x-form-input type="datetime-local" name="start" label="Début du quiz" required />
                     <x-form-input type="datetime-local" name="end" label="Fin du quiz" required />
-                    <x-form-submit />
+                    <x-form-submit class="voirP rounded-lg" />
                 </x-form>
             </div>
         </div>

@@ -4,13 +4,14 @@
             {{ __('Équipes') }}
         </h2>
     </x-slot>
-    <a href="javascript:history.back()">Revenir en arrière</a>
 
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <h3>{{ $quiz->name }}</h3>
+            <a class="voirP rounded-lg" href="javascript:history.back()">Revenir à la liste des quizz</a>
+
+            <div class="overflow-hidden shadow-xl sm:rounded-lg p-6 bg-accueil_pale mt-6">
+                <div class="p-6 bg-white border-b border-gray-200 rounded-lg">
+                    <b><h1 class="underline">{{ $quiz->name }}</h1></b>
                     <table>
                         <thead>
                             <tr>
