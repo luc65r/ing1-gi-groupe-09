@@ -29,7 +29,7 @@
                     <td>
                         <form action="{{ route('grades.store', ['quiz' => $quiz, 'team' => $team]) }}" method="POST">
                             @csrf
-
+                            @method('POST')
                             <label for="grade">Note</label>
                             <input type="number" id="grade" name="grade" required>
 

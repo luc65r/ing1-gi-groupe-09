@@ -51,6 +51,8 @@ class QuizGradeController extends Controller
             'team_id' => ['required', 'exists:teams,id', Rule::in([$team->id])],
             'quiz_id' => ['required', 'exists:quizzes,id', Rule::in([$quiz->id])],
         ]);
+
+        return redirect()->route('quizzes.show', $quiz->id);
     }
 
     /**
