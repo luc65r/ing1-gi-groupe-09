@@ -43,6 +43,8 @@ class Team extends Model
 
     public function hasAnsweredQuiz($quiz)
     {
-        return $this->answers()->where('quiz_id', $quiz->id)->exists();
+        return $this->answers()->whereHas('question', function ($query) use ($quiz) {
+            $query->where('quiz_id', $quiz->id);
+        })->exists();
     }
 }

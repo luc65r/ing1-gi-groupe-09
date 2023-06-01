@@ -7,16 +7,17 @@
 
     <div class="py-12">
         @is('student')
-        @php
-        $user = Auth::user();
-        $team = $user->student
-            ->teams()
-            ->whereBelongsTo($project)
-            ->first();
-        @endphp
+            @php
+                $user = Auth::user();
+                $team = $user->student
+                    ->teams()
+                    ->whereBelongsTo($project)
+                    ->first();
+            @endphp
         @endis
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('contests.projects.index', $project->contest) }}" class="voirP rounded-lg ">Revenir à la liste de projets</a>
+            <a href="{{ route('contests.projects.index', $project->contest) }}" class="voirP rounded-lg ">Revenir à la
+                liste de projets</a>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6">
 
                 <div class="p-6 bg-white border-b border-gray-200 shadow-lg bg-accueil_pale">
@@ -28,14 +29,14 @@
                         Ressources :
                         <br>
                         @php
-                        $i =0;
+                            $i = 0;
                         @endphp
                         @foreach ($project->resources as $resource)
                             @php
-                            $i +=1;
+                                $i += 1;
                             @endphp
-                            {{$i}})
-                            <a class="underline" href="{{ $resource->url }}">  {{$resource->name }}</a>
+                            {{ $i }}
+                            <a class="underline" href="{{ $resource->url }}"> {{ $resource->name }}</a>
                             <br>
                         @endforeach
 
@@ -47,7 +48,7 @@
                             <x-form-input name="url" type="url" label="URL" required />
                             <x-form-submit class="voirP rounded-lg" />
                         </x-form>
-                        @endis
+                    @endis
                     </p>
 
                     <div class="mt-6 flex">
@@ -56,23 +57,13 @@
                                 <a href="{{ route('projects.quizzes.index', ['project' => $project]) }}">Quizz</a>
                             </div>
                             @is('student')
-                            @if ($team)
-                                @php
-                                $quiz = $project->quizzes()->first();
-                                @endphp
-                                @if ($team->answers()->whereBelongsTo($quiz->questions()->first())->exists())
-                                    <a class="voirP rounded-lg" href="{{ route('quizzes.answers', compact('quiz')) }}">Voir les réponses</a>
+                                @if ($team)
+                                    <a href="{{ route('teams.show', ['team' => $team]) }}"
+                                        class="voirP rounded-lg ml-2">Voir mon équipe</a>
                                 @else
-                                    <a class="voirP rounded-lg" href="{{ route('quizzes.show', compact('quiz')) }}">Répondre au quizz</a>
+                                    <a href="{{ route('projects.teams.create', ['project' => $project]) }}"
+                                        class="voirP rounded-lg ml-2">Créer mon équipe</a>
                                 @endif
-                            @endif
-                            @if ($team)
-                                <a href="{{ route('teams.show', ['team' => $team]) }}"
-                                   class="voirP rounded-lg ml-2">Voir mon équipe</a>
-                            @else
-                                <a href="{{ route('projects.teams.create', ['project' => $project]) }}"
-                                   class="voirP rounded-lg ml-2">Créer mon équipe</a>
-                            @endif
                             @endis
                         @endif
 

@@ -26,18 +26,20 @@
                             </td>
                         </tr>
                     @endforeach
-                    <td>
-                        <form action="{{ route('grades.store', ['quiz' => $quiz, 'team' => $team]) }}" method="POST">
-                            @csrf
-                            @method('POST')
-                            <label for="grade">Note</label>
-                            <input type="number" id="grade" name="grade" required>
+                    @is('manager')
+                        <td>
+                            <form action="{{ route('grades.store', ['quiz' => $quiz, 'team' => $team]) }}" method="POST">
+                                @csrf
+                                @method('POST')
+                                <label for="grade">Note</label>
+                                <input type="number" id="grade" name="grade" required>
 
-                            <button type="submit">Enregistrer</button>
-                        </form>
+                                <button type="submit">Enregistrer</button>
+                            </form>
 
 
-                    </td>
+                        </td>
+                    @endis
                 </tbody>
             </table>
         </div>
