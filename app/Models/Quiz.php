@@ -32,4 +32,8 @@ class Quiz extends Model
     public function grades() {
         return $this->hasMany(Grade::class);
     }
+
+    public function answers() {
+        return $this->through('questions')->has('answers');
+    }
 }

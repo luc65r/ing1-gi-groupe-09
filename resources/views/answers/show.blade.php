@@ -27,7 +27,7 @@
                         </tr>
                     @endforeach
                     <td>
-                        <form action="{{ route('grade.store', ['quiz' => $quiz, 'team' => $team]) }}" method="POST">
+                        <form action="{{ route('grades.store', ['quiz' => $quiz, 'team' => $team]) }}" method="POST">
                             @csrf
 
                             <label for="grade">Note</label>

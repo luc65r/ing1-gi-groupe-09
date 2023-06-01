@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @foreach ($teams as $team)
                 <a
-                    href="{{ route('quizzes.qcm_team', ['quiz' => $quiz->id, 'team' => $team->id]) }}">{{ $team->name }}</a>
+                    href="{{ route('answers.show', ['quiz' => $quiz->id, 'team' => $team->id]) }}">{{ $team->name }}</a>
             @endforeach
 
         </div>

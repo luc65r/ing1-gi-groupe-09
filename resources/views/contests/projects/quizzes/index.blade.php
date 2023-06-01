@@ -54,45 +54,21 @@
                                                     href="{{ route('quizzes.edit', ['project' => $project, 'quiz' => $quiz->id]) }}">Modifier
                                                 </a>
                                                 <a class="voirP rounded-lg"
-                                                    href="{{ route('quizzes.responses', ['quiz' => $quiz]) }}">Voir les
+                                                    href="{{ route('quizzes.teams', ['quiz' => $quiz]) }}">Voir les
                                                     réponses</a>
                                             @else
                                                 <a class="voirP rounded-lg"
-                                                    href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
+                                                   href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
                                                     {{ 'Voir les questions' }}
                                                 </a>
-                                            @endis
+                                                @endis
 
                                         </td>
                                     </tr>
                                 @endforeach
+                            </tbody>
                         @endif
-
-                        @foreach ($quizzes as $quiz)
-                            <div>
-
-                                @if ($team->hasAnsweredQuiz($quiz))
-                                    <a href="{{ route('quizzes.answers', ['quiz' => $quiz]) }}">Voir les
-                                        réponses</a>
-                                @else
-                                    <a href="{{ route('quizzes.show', ['quiz' => $quiz]) }}">
-                                        {{ $quiz->name }}
-                                    </a>
-                                @endif
-
-                                @is('manager')
-                                    <form action="{{ route('quizzes.destroy', $quiz->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce QCM ?')">Supprimer</button>
-                                    </form>
-                                    <a href="{{ route('quizzes.edit', ['project' => $project, 'quiz' => $quiz->id]) }}">Modifier
-                                    </a>
-                                    <a href="{{ route('quizzes.teams', ['quiz' => $quiz->id]) }}">Corriger le QCM</a>
-                                @endis
-                            </div>
-                        @endforeach
+                    </table>
                 </div>
             </div>
         </div>

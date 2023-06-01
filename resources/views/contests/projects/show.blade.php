@@ -51,49 +51,30 @@
                     </p>
 
                     <div class="mt-6 flex">
-
                         @if ($project->contest->type === 'battle')
-                            @is('student')
-                            @if ($team)
-                                <div class="p-6 bg-white border-b border-gray-200">
-                                    <a href="{{ route('projects.quizzes.index', ['project' => $project]) }}">Quizz</a>
-                                </div>
-                            @endif
-                        @else
                             <div class="p-6 bg-white border-b border-gray-200">
                                 <a href="{{ route('projects.quizzes.index', ['project' => $project]) }}">Quizz</a>
                             </div>
-                            @endis
-
-                        @endif
-
-                        @if ($project->contest->type === 'battle')
-                            <a class="voirP rounded-lg" href="{{ route('projects.quizzes.index', ['project' => $project]) }}">Quizz</a>
-                        @endif
-                        @is('student')
-                        @if ($team)
-                            @php
-                            $quiz = $project->quizzes()->first();
-                            @endphp
-                            @if ($team->answers()->whereBelongsTo($quiz->questions()->first())->exists())
-                                <a class="voirP rounded-lg"
-                                   href="{{ route('projects.quizzes.answers', ['project' => $project, 'quiz' => $quiz]) }}">Voir
-                                    les réponses</a>
-                            @else
-                                <a class="voirP rounded-lg"
-                                   href="{{ route('projects.quizzes.index', ['project' => $project, 'team' => $team]) }}">Répondre
-                                    au
-                                    quizz</a>
+                            @is('student')
+                            @if ($team)
+                                @php
+                                $quiz = $project->quizzes()->first();
+                                @endphp
+                                @if ($team->answers()->whereBelongsTo($quiz->questions()->first())->exists())
+                                    <a class="voirP rounded-lg" href="{{ route('quizzes.answers', compact('quiz')) }}">Voir les réponses</a>
+                                @else
+                                    <a class="voirP rounded-lg" href="{{ route('quizzes.show', compact('quiz')) }}">Répondre au quizz</a>
+                                @endif
                             @endif
+                            @if ($team)
+                                <a href="{{ route('teams.show', ['team' => $team]) }}"
+                                   class="voirP rounded-lg ml-2">Voir mon équipe</a>
+                            @else
+                                <a href="{{ route('projects.teams.create', ['project' => $project]) }}"
+                                   class="voirP rounded-lg ml-2">Créer mon équipe</a>
+                            @endif
+                            @endis
                         @endif
-                        @if ($team)
-                            <a href="{{ route('teams.show', ['team' => $team]) }}"
-                               class="voirP rounded-lg ml-2">Voir mon équipe</a>
-                        @else
-                            <a href="{{ route('projects.teams.create', ['project' => $project]) }}"
-                               class="voirP rounded-lg ml-2">Créer mon équipe</a>
-                        @endif
-                        @endis
 
                     </div>
 
